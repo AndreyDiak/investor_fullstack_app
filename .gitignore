@@ -1,2 +1,4 @@
 ui/node_modules
-nestjs/node_modules
+# nestjs/node_modules
+# nestjsv2
+.vscode
