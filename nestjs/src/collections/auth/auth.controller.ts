@@ -31,11 +31,12 @@ export class AuthController {
     @Body() signInDto: CreateAuthInput,
     @Res({ passthrough: true }) res: Response,
   ) {
+    console.log({ signInDto });
+
     const tokens = await this.authService.signIn(
       signInDto.username,
       signInDto.password,
     );
-    // res
     return tokens;
   }
 
@@ -56,7 +57,7 @@ export class AuthController {
   }
 
   @UseGuards(AccessTokenGuard)
-  @Get('me')
+  @Get('/profile')
   me(@Req() req: Request & { user: unknown }) {
     return req.user;
   }
