@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 
 export class CreateAuthInput {
   @IsString()
-  userName: string;
+  username: string;
 
   @IsString()
   password: string;

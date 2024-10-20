@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   Param,
   Post,
@@ -37,11 +36,11 @@ export class PostController {
     return this.postService.updateOne(id, body);
   }
 
-  @UseGuards(AccessTokenGuard)
-  @Delete('/:id')
-  deleteOne(@Param('id') id: string) {
-    return this.postService.deleteOne(id);
-  }
+  // // @UseGuards(AccessTokenGuard)
+  // // @Delete('/:id')
+  // // deleteOne(@Param('id') id: string) {
+  // //   // return this.postService.deleteOne(id);
+  // }
 
   @Get('list')
   getAll() {

@@ -1,18 +1,23 @@
-import { ClickHouseModule } from '@depyronick/nestjs-clickhouse';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './collections/auth/auth.module';
+import { PostModule } from './collections/post/post.module';
+import { StockModule } from './collections/stock/stock.module';
+import { UserModule } from './collections/user/user.module';
 
 @Module({
   imports: [
-    ClickHouseModule.register([
-      {
-        name: 'STOCKS_SERVER',
-        host: '127.0.0.1',
-        // password: '7h3ul71m473p4555w0rd',
-        port: 8123,
-      },
-    ]),
+    ConfigModule.forRoot({ isGlobal: true }),
+    ThrottlerModule.forRoot([{ limit: 10, ttl: 60 }]),
+    MongooseModule.forRoot(process.env.DATABASE_URI),
+    AuthModule,
+    UserModule,
+    PostModule,
+    StockModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,6 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as argon2 from 'argon2';
 import { CreateUserInput } from 'src/inputs/user.input';
 import { UserService } from '../user/user.service';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -24,16 +25,24 @@ export class AuthService {
       if (emailCandidate) {
         throw new BadRequestException('Email already taken');
       }
-    } catch {}
+    } catch (e) {
+      if (e.statusCode === 400) {
+        return e;
+      }
+    }
 
     try {
       const userNameCandidate = await this.userService.findOneByUsername(
-        createUserInput.userName,
+        createUserInput.username,
       );
       if (userNameCandidate) {
         throw new BadRequestException('Username already taken');
       }
-    } catch {}
+    } catch (e) {
+      if (e.statusCode === 400) {
+        return e;
+      }
+    }
 
     const hashedPassword = await argon2.hash(createUserInput.password);
     const newUser = {
@@ -41,10 +50,32 @@ export class AuthService {
       password: hashedPassword,
     };
     await this.userService.create(newUser);
-    return this.signIn(createUserInput.userName, createUserInput.password);
+    return this.signIn(createUserInput.username, createUserInput.password);
   }
 
-  async signIn(username: string, pass: string) {}
+  async signIn(username: string, pass: string) {
+    try {
+      const usernameCandidate =
+        await this.userService.findOneByUsername(username);
+      if (!usernameCandidate) {
+        throw new BadRequestException('Username or password is incorrect');
+      }
+      const hashedPassword = await argon2.verify(
+        usernameCandidate.password,
+        pass,
+      );
+      if (!hashedPassword) {
+        throw new BadRequestException('Username or password is incorrect');
+      }
+      const tokens = await this.getTokens(
+        usernameCandidate._id.toString(),
+        username,
+      );
+      return tokens;
+    } catch (e) {
+      return e;
+    }
+  }
 
   async signOut(userID: string) {
     return this.userService.updateOne(userID, { refreshToken: null });
@@ -62,7 +93,7 @@ export class AuthService {
     if (!refreshTokenMatches) {
       throw new ForbiddenException('Access Denied');
     }
-    const tokens = await this.getTokens(userID, user.userName);
+    const tokens = await this.getTokens(userID, user.username);
     await this.updateRefreshToken(userID, tokens.refreshToken);
     return tokens;
   }

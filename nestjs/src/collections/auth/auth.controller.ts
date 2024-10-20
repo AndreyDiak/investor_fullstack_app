@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
 import { RefreshTokenGuard } from 'src/common/guards/refreshToken.guard';
 import { JwtPayload } from 'src/common/strategies/accessToken.strategy';
@@ -19,8 +27,16 @@ export class AuthController {
   }
 
   @Post('signin')
-  signIn(@Body() signInDto: CreateAuthInput) {
-    return this.authService.signIn(signInDto.userName, signInDto.password);
+  async signIn(
+    @Body() signInDto: CreateAuthInput,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const tokens = await this.authService.signIn(
+      signInDto.username,
+      signInDto.password,
+    );
+    // res
+    return tokens;
   }
 
   @UseGuards(AccessTokenGuard)

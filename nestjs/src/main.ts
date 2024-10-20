@@ -1,8 +1,20 @@
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import * as compression from 'compression';
+import helmet from 'helmet';
 import { AppModule } from './app.module';
+
+const PORT = parseInt(process.env.PORT, 10) || 4000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  // register all plugins and extension
+  app.enableCors({ origin: '*', credentials: true });
+  app.useGlobalPipes(new ValidationPipe({}));
+  app.enableVersioning({ type: VersioningType.URI });
+  app.use(helmet());
+  app.use(compression());
+
+  await app.listen(PORT);
 }
 bootstrap();

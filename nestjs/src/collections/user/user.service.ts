@@ -23,10 +23,11 @@ export class UserService {
     return user;
   }
 
-  async findOneByUsername(userName: string): Promise<UserPayload> {
-    const user = await this.userModel.findOne({ userName });
+  async findOneByUsername(username: string): Promise<UserPayload> {
+    const user = await this.userModel.findOne({ username });
+
     if (!user) {
-      throw new NotFoundException(`User with username:${userName} not found `);
+      throw new NotFoundException(`User with username:${username} not found `);
     }
     return user;
   }
