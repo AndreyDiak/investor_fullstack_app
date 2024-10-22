@@ -1,13 +1,38 @@
-import { HTMLAttributes } from "react";
+import { ButtonHTMLAttributes, HTMLAttributes, useContext } from "react";
+import { useFormContext } from "react-hook-form";
+import { ScaleLoader } from "react-spinners";
+import { mergeClassNames } from "../../../shared/lib";
+import { CustomFormContext } from "../../../shared/ui/common/form";
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {}
+interface Props
+  extends HTMLAttributes<HTMLButtonElement>,
+    ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export const AuthButton = ({ ...rest }: Props) => {
+export const AuthButton = ({ className, children, ...rest }: Props) => {
+  const {
+    formState: { isValid, isLoading },
+  } = useFormContext();
+  const { loading } = useContext(CustomFormContext);
+
+  const disabled = !isValid || isLoading || loading;
   return (
     <button
+      disabled={disabled}
       type="submit"
-      className="bg-green-500 text-white font-bold rounded-full text-md h-12 font-sans duration-300 hover:bg-green-900"
+      className={mergeClassNames(
+        disabled
+          ? "bg-green-300"
+          : "bg-green-500 cursor-pointer hover:bg-green-900",
+        "text-white font-bold rounded-full text-md h-12 font-sans duration-300 flex items-center gap-4 justify-center",
+        className
+      )}
       {...rest}
-    />
+    >
+      {loading ? (
+        <ScaleLoader height={24} width={4} color="rgb(22 101 52)" />
+      ) : (
+        children
+      )}
+    </button>
   );
 };
