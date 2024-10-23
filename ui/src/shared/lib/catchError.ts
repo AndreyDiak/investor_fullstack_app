@@ -1,7 +1,17 @@
-export async function catchError<T>(
-  promise: Promise<T>
-): Promise<[undefined, T] | [Error]> {
+export async function catchError<T, E extends new (message?: string) => Error>(
+  promise: Promise<T>,
+  errorsToCatch?: E[]
+): Promise<[undefined, T] | [InstanceType<E>]> {
   return await promise
     .then((data) => [undefined, data] as [undefined, T])
-    .catch((e) => [e] as const);
+    .catch((error) => {
+      if (typeof errorsToCatch === "undefined") {
+        return [error];
+      }
+      if (errorsToCatch.some((e) => error instanceof e)) {
+        return [error];
+      }
+
+      throw error;
+    });
 }

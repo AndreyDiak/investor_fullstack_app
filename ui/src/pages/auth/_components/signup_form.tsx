@@ -11,7 +11,7 @@ import { AuthInput } from "./_input";
 
 interface FormProps {
   email: string;
-  fullname: string;
+  username: string;
   password: string;
   repeatPassword?: string;
 }
@@ -32,7 +32,7 @@ const styles = {
   },
 };
 
-export const SignUpForm = () => {
+export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const form = useForm<FormProps>();
   const [httpError, setHttpError] = useState();
   const {
@@ -56,7 +56,14 @@ export const SignUpForm = () => {
     await onSubmit(mutable);
   };
   return (
-    <Form form={form} onSubmit={handleSubmit} className="flex flex-col gap-2">
+    <Form
+      form={form}
+      onSubmit={async (data) => {
+        await handleSubmit(data);
+        onSuccess?.();
+      }}
+      className="flex flex-col gap-2"
+    >
       <FormGrid className="mb-12">
         <motion.span className="flex flex-col gap-2" {...styles}>
           <AuthInput
@@ -71,7 +78,7 @@ export const SignUpForm = () => {
             Icon={Person}
             type="text"
             placeholder="Username"
-            {...register("fullname", {
+            {...register("username", {
               required: true,
             })}
           />

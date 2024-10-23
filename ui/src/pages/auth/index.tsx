@@ -1,11 +1,14 @@
 import { motion, useCycle } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { SignInForm } from "./_components/signin_form";
 import { SignUpForm } from "./_components/signup_form";
 
 type Mode = "signin" | "signup";
 
 export const AuthPage = () => {
+  const navigate = useNavigate();
   const [mode, toggleMode] = useCycle<Mode>("signin", "signup");
   const [touched, setTouched] = useState(false);
 
@@ -30,9 +33,30 @@ export const AuthPage = () => {
             initial={{ opacity: 0.4, scale: 0.6, x: 250 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.5, ease: "backOut" }}
-            className={`flex flex-col items-center mb-14 gap-14 ${""}`}
+            className={`flex flex-col items-center mb-14 gap-14`}
           >
-            {{ signin: <SignInForm />, signup: <SignUpForm /> }[mode]}
+            {
+              {
+                signin: (
+                  <SignInForm
+                    onSuccess={() => {
+                      navigate("/");
+                    }}
+                  />
+                ),
+                signup: (
+                  <SignUpForm
+                    onSuccess={() => {
+                      toggleMode();
+                      toast(
+                        "You successfully create an acccout, please log in",
+                        { type: "success" }
+                      );
+                    }}
+                  />
+                ),
+              }[mode]
+            }
           </motion.div>
           <div className="font-light text-gray-500 text-sm cursor-pointer hover:text-gray-900 text-center">
             <button

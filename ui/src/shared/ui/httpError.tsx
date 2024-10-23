@@ -5,11 +5,11 @@ export const HttpError = ({ error }: { error?: Error }) => {
 
   return (
     <Badge
-      className="w-full text-center rounded-lg"
+      className="w-full text-center rounded-xl"
       variant="danger"
       size="small"
     >
-      {error.message}
+      {Array.isArray(error) ? error[0].message : error.message}
     </Badge>
   );
 };

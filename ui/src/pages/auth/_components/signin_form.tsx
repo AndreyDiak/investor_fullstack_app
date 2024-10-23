@@ -9,7 +9,7 @@ import { HttpError } from "../../../shared/ui/httpError";
 import { AuthButton } from "./_button";
 import { AuthInput } from "./_input";
 
-export const SignInForm = () => {
+export const SignInForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const form = useForm<SignInDto>();
   const [httpError, setHttpError] = useState();
   const {
@@ -24,7 +24,13 @@ export const SignInForm = () => {
   });
 
   return (
-    <Form form={form} onSubmit={handleSubmit}>
+    <Form
+      form={form}
+      onSubmit={async (data) => {
+        await handleSubmit(data);
+        onSuccess?.();
+      }}
+    >
       <FormGrid className="mb-12">
         <AuthInput
           Icon={Person}
