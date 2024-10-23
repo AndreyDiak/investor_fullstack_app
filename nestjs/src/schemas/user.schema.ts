@@ -9,20 +9,20 @@ export class User {
   @Prop({ unique: true })
   username: string;
 
-  @Prop()
-  fullname: string;
-
   @Prop({ unique: true })
   email: string;
 
-  @Prop()
-  bio: string;
+  // @Prop()
+  // bio: string;
 
   @Prop()
   roles: Role[];
 
   @Prop()
   refreshToken: string;
+
+  @Prop()
+  gamePlayed: number;
 
   @Prop()
   password: string;
