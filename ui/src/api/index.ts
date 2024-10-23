@@ -1,11 +1,11 @@
 import { StoreApi } from "zustand";
-import { AuthStore, authStore } from "./auth";
+import { AuthStore, useAuthStore } from "./auth";
 
 class Api {
   auth: StoreApi<AuthStore>;
 
   constructor() {
-    this.auth = authStore;
+    this.auth = useAuthStore;
   }
 }
 

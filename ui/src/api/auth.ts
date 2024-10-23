@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { http } from "./http";
 
-export const authStore = create<AuthStore>(() => ({
+export const useAuthStore = create<AuthStore>((set) => ({
   async signIn(data) {
     const { data: json } = await http.post("/auth/signin", data);
     localStorage.setItem("access_token", json.accessToken);
@@ -15,16 +15,24 @@ export const authStore = create<AuthStore>(() => ({
     localStorage.removeItem("access_token");
   },
   async me() {
-    const res = await http.get("/auth/me");
-    console.log({ res });
+    const { data } = await http.get("/auth/me");
+    const user = {
+      id: data.sub,
+      username: data.username,
+    };
+
+    set({ data: user });
+
+    return user;
   },
 }));
 
 export interface AuthStore {
+  data?: AuthData;
   signIn: (data: SignInDto) => Promise<void>;
   signUp: (data: SignUpDto) => Promise<void>;
   signOut: () => Promise<void>;
-  me: () => Promise<unknown>;
+  me: () => Promise<AuthData>;
 }
 
 export interface SignInDto {
@@ -36,4 +44,9 @@ export interface SignUpDto {
   username: string;
   password: string;
   email: string;
+}
+
+export interface AuthData {
+  id: string;
+  username: string;
 }
