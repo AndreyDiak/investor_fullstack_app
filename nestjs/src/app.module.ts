@@ -5,7 +5,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './collections/auth/auth.module';
-import { PostModule } from './collections/post/post.module';
+import { GameModule } from './collections/game/game.module';
 import { UserModule } from './collections/user/user.module';
 
 @Module({
@@ -15,7 +15,7 @@ import { UserModule } from './collections/user/user.module';
     MongooseModule.forRoot(process.env.DATABASE_URI),
     AuthModule,
     UserModule,
-    PostModule,
+    GameModule,
   ],
   controllers: [AppController],
   providers: [AppService],
