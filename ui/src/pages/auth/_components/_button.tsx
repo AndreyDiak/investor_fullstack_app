@@ -23,7 +23,7 @@ export const AuthButton = ({ className, children, ...rest }: Props) => {
         disabled
           ? "bg-green-300"
           : "bg-green-500 cursor-pointer hover:bg-green-900",
-        "text-white font-bold rounded-full text-md h-12 font-sans duration-300 flex items-center gap-4 justify-center",
+        "text-white font-bold rounded-full text-md h-12 font-sans duration-300 flex items-center gap-4 justify-center w-full",
         className
       )}
       {...rest}

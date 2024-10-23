@@ -34,7 +34,7 @@ export const AuthPage = () => {
           >
             {{ signin: <SignInForm />, signup: <SignUpForm /> }[mode]}
           </motion.div>
-          <div className="font-light text-gray-600 text-sm cursor-pointer hover:text-gray-900 text-center">
+          <div className="font-light text-gray-500 text-sm cursor-pointer hover:text-gray-900 text-center">
             <button
               className="underline"
               onClick={() => {

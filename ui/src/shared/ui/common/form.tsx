@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
+import { mergeClassNames } from "../../lib";
 
 interface Props<T extends FieldValues>
   extends Omit<DOMAttributes<HTMLFormElement>, "onSubmit">,
@@ -29,8 +30,6 @@ export const Form = <T extends FieldValues>({
       setLoading(true);
       try {
         await onSubmit(data);
-      } catch (e) {
-        console.error(e);
       } finally {
         setLoading(false);
       }
@@ -56,3 +55,15 @@ export const Form = <T extends FieldValues>({
 export const CustomFormContext = createContext<{ loading: boolean }>({
   loading: false,
 });
+
+export const FormGrid = ({
+  className,
+  ...rest
+}: HTMLAttributes<HTMLDivElement>) => {
+  return (
+    <div
+      {...rest}
+      className={mergeClassNames("flex flex-col gap-2", className)}
+    />
+  );
+};
