@@ -18,63 +18,48 @@ export class AuthService {
   ) {}
 
   async signUp(createUserInput: CreateUserInput) {
-    try {
-      const emailCandidate = await this.userService.findOneByEmail(
-        createUserInput.email,
-      );
-      if (emailCandidate) {
-        throw new BadRequestException('Email already taken');
-      }
-    } catch (e) {
-      if (e.statusCode === 400) {
-        return e;
-      }
+    const emailCandidate = await this.userService.findOneByEmail(
+      createUserInput.email,
+    );
+    if (emailCandidate) {
+      throw new BadRequestException('Email already taken');
     }
 
-    try {
-      const userNameCandidate = await this.userService.findOneByUsername(
-        createUserInput.username,
-      );
-      if (userNameCandidate) {
-        throw new BadRequestException('Username already taken');
-      }
-    } catch (e) {
-      if (e.statusCode === 400) {
-        return e;
-      }
+    const userNameCandidate = await this.userService.findOneByUsername(
+      createUserInput.username,
+    );
+    if (userNameCandidate) {
+      throw new BadRequestException('Username already taken');
     }
-
     const hashedPassword = await argon2.hash(createUserInput.password);
     const newUser = {
       ...createUserInput,
       password: hashedPassword,
     };
-    await this.userService.create(newUser);
-    return this.signIn(createUserInput.username, createUserInput.password);
+    const user = await this.userService.create(newUser);
+    return user._id.toString();
   }
 
   async signIn(username: string, pass: string) {
-    try {
-      const usernameCandidate =
-        await this.userService.findOneByUsername(username);
-      if (!usernameCandidate) {
-        throw new BadRequestException('Username or password is incorrect');
-      }
-      const hashedPassword = await argon2.verify(
-        usernameCandidate.password,
-        pass,
-      );
-      if (!hashedPassword) {
-        throw new BadRequestException('Username or password is incorrect');
-      }
-      const tokens = await this.getTokens(
-        usernameCandidate._id.toString(),
-        username,
-      );
-      return tokens;
-    } catch (e) {
-      return e;
+    const usernameCandidate =
+      await this.userService.findOneByUsername(username);
+    if (!usernameCandidate) {
+      throw new BadRequestException('Username or Password is incorrect');
     }
+
+    const hashedPassword = await argon2.verify(
+      usernameCandidate.password,
+      pass,
+    );
+    if (!hashedPassword) {
+      throw new BadRequestException('Username or Password is incorrect');
+    }
+
+    const tokens = await this.getTokens(
+      usernameCandidate._id.toString(),
+      username,
+    );
+    return tokens;
   }
 
   async signOut(userID: string) {

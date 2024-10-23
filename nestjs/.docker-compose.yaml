@@ -7,10 +7,9 @@ services:
       context: ./
       dockerfile: Dockerfile
     environment:
-      DATABASE_URI: mongodb://database:27017/
+      DATABASE_URI: mongodb://db:27017
       JWT_ACCESS_SECRET: some_secret_value_for_access
       JWT_REFRESH_SECRET: some_secret_value_for_refresh
-      CLICKHOUSE_URI: TEST
     ports:
       - '4000:4000'
     depends_on:

@@ -23,12 +23,8 @@ export class UserService {
     return user;
   }
 
-  async findOneByUsername(username: string): Promise<UserPayload> {
+  async findOneByUsername(username: string): Promise<UserPayload | undefined> {
     const user = await this.userModel.findOne({ username });
-
-    if (!user) {
-      throw new NotFoundException(`User with username:${username} not found `);
-    }
     return user;
   }
 
@@ -36,9 +32,6 @@ export class UserService {
     const user = await this.userModel.findOne({
       email,
     });
-    if (!user) {
-      throw new NotFoundException(`User with email:${email} not found `);
-    }
     return user;
   }
 

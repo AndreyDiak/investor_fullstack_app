@@ -1,15 +1,8 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Req,
-  Res,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
 import { RefreshTokenGuard } from 'src/common/guards/refreshToken.guard';
 import { JwtPayload } from 'src/common/strategies/accessToken.strategy';
+import { catchError } from 'src/common/utils/catchError';
 import { CreateAuthInput } from 'src/inputs/auth.input';
 import { CreateUserInput } from 'src/inputs/user.input';
 import { AuthService } from './auth.service';
@@ -22,22 +15,16 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('signup')
-  signUp(@Body() signUpDto: CreateUserInput) {
-    return this.authService.signUp(signUpDto);
+  async signUp(@Body() signUpDto: CreateUserInput): Promise<string> {
+    return await this.authService.signUp(signUpDto);
   }
 
   @Post('signin')
-  async signIn(
-    @Body() signInDto: CreateAuthInput,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    console.log({ signInDto });
-
-    const tokens = await this.authService.signIn(
-      signInDto.username,
-      signInDto.password,
+  async signIn(@Body() signInDto: CreateAuthInput) {
+    const [error, tokens] = await catchError(
+      this.authService.signIn(signInDto.username, signInDto.password),
     );
-    return tokens;
+    return error ?? tokens;
   }
 
   @UseGuards(AccessTokenGuard)
@@ -57,8 +44,9 @@ export class AuthController {
   }
 
   @UseGuards(AccessTokenGuard)
-  @Get('/profile')
+  @Get('/me')
   me(@Req() req: Request & { user: unknown }) {
+    console.log({ req });
     return req.user;
   }
 }
