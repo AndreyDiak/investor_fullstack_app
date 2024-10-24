@@ -10,5 +10,4 @@ export interface Game {
   job: PlayerJob;
   mood: PlayerMood;
   credits: PlayerCredit[];
-  statistics: unknown;
 }

@@ -9,7 +9,7 @@ export type JwtPayload = {
 };
 
 @Injectable()
-export class AccessTokenStrategyf extends PassportStrategy(Strategy, 'jwt') {
+export class AccessTokenStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
