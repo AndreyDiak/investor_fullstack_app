@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, HTMLAttributes, useContext } from "react";
 import { useFormContext } from "react-hook-form";
 import { ScaleLoader } from "react-spinners";
-import { mergeClassNames } from "../../../shared/lib";
+import { cn } from "../../../shared/lib";
 import { CustomFormContext } from "../../../shared/ui/common/form";
 
 interface Props
@@ -19,7 +19,7 @@ export const AuthButton = ({ className, children, ...rest }: Props) => {
     <button
       disabled={disabled}
       type="submit"
-      className={mergeClassNames(
+      className={cn(
         disabled
           ? "bg-green-300"
           : "bg-green-500 cursor-pointer hover:bg-green-900",

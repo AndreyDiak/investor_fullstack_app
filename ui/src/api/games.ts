@@ -1,11 +1,15 @@
-import { createStore } from "zustand";
+import { create } from "zustand";
 import { Game } from "../entities/game/types";
+import { http } from "../shared/api/http";
 
-export const gamesStore = createStore<GamesStore>(() => ({
-  fetch: async () => {},
+export const useGameStore = create<GamesStore>((set) => ({
+  fetch: async () => {
+    const { data: games } = await http.get("/games");
+    set({ data: games });
+  },
 }));
 
-interface GamesStore {
+export interface GamesStore {
   data?: Game[];
   fetch: () => Promise<void>;
 }

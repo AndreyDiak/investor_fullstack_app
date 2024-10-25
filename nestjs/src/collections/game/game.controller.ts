@@ -12,14 +12,14 @@ export class GameController {
   constructor(private readonly gameService: GameService) {}
 
   @UseGuards(AccessTokenGuard)
-  @Post('/')
+  @Get('/')
   getAll(@Req() req: Request & { user: JwtPayload }) {
     const userId = req.user.sub;
     return this.gameService.getAll(userId);
   }
 
   @UseGuards(AccessTokenGuard)
-  @Get('/create')
+  @Post('/create')
   create(
     @Req() req: Request & { user: JwtPayload },
     @Body() body: CreateGameInput,
@@ -28,7 +28,7 @@ export class GameController {
   }
 
   @UseGuards(AccessTokenGuard)
-  @Get('/update')
+  @Post('/update')
   update(
     @Req() req: Request & { user: JwtPayload },
     @Body() body: UpdateGameInput,

@@ -1,1 +1,1 @@
-export { mergeClassNames } from "./mergeClassNames";
+export { cn } from "./mergeClassNames";

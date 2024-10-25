@@ -1,2 +1,2 @@
-export const mergeClassNames = (...classNames: (string | undefined)[]) =>
+export const cn = (...classNames: (string | undefined)[]) =>
   classNames.filter((v) => v).join(" ");

@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const PORT = import.meta.env.VITE_BACKEND_PORT;
+
 export const http = axios.create({
-  baseURL: "http://localhost:8000/v1",
+  baseURL: `http://localhost:${PORT}/v1`,
   // withCredentials: true,
 });
 

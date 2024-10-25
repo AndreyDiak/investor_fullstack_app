@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { http } from "./http";
+import { http } from "../shared/api/http";
 
 export const useAuthStore = create<AuthStore>((set) => ({
   async signIn(data) {

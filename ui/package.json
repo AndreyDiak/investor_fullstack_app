@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "docker-dev": "vite VITE_BACKEND_PORT=4000",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"

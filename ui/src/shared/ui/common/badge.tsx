@@ -1,4 +1,4 @@
-import { mergeClassNames } from "../../lib";
+import { cn } from "../../lib";
 import { Box, BoxProps } from "./box";
 
 type BadgeSize = "small" | "medium" | "large";
@@ -17,7 +17,7 @@ export const Badge = ({
 }: BadgeProps) => {
   return (
     <Box
-      className={mergeClassNames(
+      className={cn(
         {
           small: "py-1 px-2 text-sm rounded-sm",
           medium: "py-2 px-3 text-base rounded",

@@ -25,7 +25,6 @@ export const AuthorizedLayout = () => {
 
   return (
     <Fragment>
-      hello world
       <Outlet />
     </Fragment>
   );

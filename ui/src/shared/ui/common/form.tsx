@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
-import { mergeClassNames } from "../../lib";
+import { cn } from "../../lib";
 
 interface Props<T extends FieldValues>
   extends Omit<DOMAttributes<HTMLFormElement>, "onSubmit">,
@@ -60,10 +60,5 @@ export const FormGrid = ({
   className,
   ...rest
 }: HTMLAttributes<HTMLDivElement>) => {
-  return (
-    <div
-      {...rest}
-      className={mergeClassNames("flex flex-col gap-2", className)}
-    />
-  );
+  return <div {...rest} className={cn("flex flex-col gap-2", className)} />;
 };
