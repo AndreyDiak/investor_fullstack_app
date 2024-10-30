@@ -1,0 +1,15 @@
+export enum Tag {
+  service = 'service',
+  sales = 'sales',
+  education = 'education',
+  trade = 'trade',
+  logistics = 'logistics',
+  transport = 'transport',
+  catering = 'catering',
+  hotelAndTrips = 'hotels and tips',
+  beautyAndHealth = 'beauty and health',
+  marketing = 'marketing',
+  finance = 'finance',
+  medicine = 'medicine',
+  production = 'production',
+}
