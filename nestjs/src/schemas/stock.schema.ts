@@ -12,7 +12,7 @@ export class Stock {
   description: string;
 
   @Prop()
-  price: string;
+  price: number;
 
   @Prop()
   tags: string[];

@@ -11,7 +11,7 @@ export class StockController {
   @Post('/init')
   init(@Req() req: Request & { user: JwtPayload }) {
     const userId = req.user.sub;
-    return this.stockService.init(userId);
+    return this.stockService.init();
   }
 
   @Get('/')

@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -44,14 +45,13 @@ export class GameController {
   }
 
   @UseGuards(AccessTokenGuard)
-  @Post('/:id/update')
-  update(@Param() params: any, @Body() body: UpdateGameInput) {
-    const gameId = params.id;
-    return this.gameService.update(gameId, body);
+  @Put('/:id')
+  update(@Param() id: string, @Body() body: UpdateGameInput) {
+    return this.gameService.updateOne(id, body);
   }
 
   @UseGuards(AccessTokenGuard)
-  @Delete('/:id/delete')
+  @Delete('/:id')
   delete(@Param() params: any) {
     const gameId = params.id;
     return this.gameService.delete(gameId);

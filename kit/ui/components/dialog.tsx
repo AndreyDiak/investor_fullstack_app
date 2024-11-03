@@ -152,7 +152,7 @@ export const DialogContent = forwardRef<
             ref={ref}
             className={cn(
               props.className,
-              "bg-white rounded-xl flex flex-col items-center justify-stretch overflow-auto border-none max-h-[80vh]"
+              "bg-white rounded-xl flex flex-col items-center justify-stretch overflow-auto border-none outline-none max-h-[80vh]"
             )}
             {...context.getFloatingProps(props)}
             style={{

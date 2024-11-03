@@ -24,29 +24,22 @@ export class UserService {
   }
 
   async findOneByUsername(username: string): Promise<UserPayload | undefined> {
-    const user = await this.userModel.findOne({ username });
-    return user;
+    return this.userModel.findOne({ username });
   }
 
   async findOneByEmail(email: string): Promise<UserPayload> {
-    const user = await this.userModel.findOne({
-      email,
-    });
-    return user;
+    return this.userModel.findOne({ email });
   }
 
   async findAll(): Promise<UserPayload[]> {
-    const users = await this.userModel.find();
-    return users;
+    return this.userModel.find();
   }
 
-  async updateOne(id: string, body: UpdateUserInput): Promise<UserPayload> {
-    await this.userModel.updateOne({ _id: id }, body);
-    const updatedUser = this.userModel.findById(id);
-    return updatedUser;
+  async updateOne(id: string, payload: UpdateUserInput) {
+    return this.userModel.findByIdAndUpdate(id, payload);
   }
 
   async deleteOne(id: string): Promise<unknown> {
-    return await this.userModel.deleteOne({ _id: id });
+    return this.userModel.findByIdAndDelete(id);
   }
 }

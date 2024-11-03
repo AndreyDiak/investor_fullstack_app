@@ -6,7 +6,8 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "paths": {
-      "@kit/ui": ["../kit/ui/index.ts"]
+      "@kit/ui": ["../kit/ui/index.ts"],
+      "@kit/struct": ["../kit/struct/index.ts"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

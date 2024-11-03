@@ -9,10 +9,6 @@ import { Game } from 'src/schemas/game.schema';
 export class GameService {
   constructor(@InjectModel(Game.name) private gameModel: Model<Game>) {}
 
-  async getAll(userId: string) {
-    return await this.gameModel.find({ ownerId: userId });
-  }
-
   async create(
     userId: string,
     input: CreateGameInput,
@@ -24,15 +20,19 @@ export class GameService {
     });
   }
 
-  async getOne(gameId: string): Promise<Game | undefined> {
-    return await this.gameModel.findOne({ _id: gameId });
+  async getAll(userId: string) {
+    return await this.gameModel.find({ ownerId: userId });
   }
 
-  async update(gameId: string, input: Omit<UpdateGameInput, 'gameId'>) {
-    return await this.gameModel.updateOne({ _id: gameId }, input);
+  async getOne(id: string): Promise<Game | undefined> {
+    return this.gameModel.findById(id);
   }
 
-  async delete(gameId: string) {
-    return await this.gameModel.deleteOne({ _id: gameId });
+  async updateOne(id: string, payload: Omit<UpdateGameInput, 'gameId'>) {
+    return this.gameModel.findByIdAndUpdate(id, payload);
+  }
+
+  async delete(id: string) {
+    return this.gameModel.findByIdAndDelete(id);
   }
 }

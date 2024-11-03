@@ -1,3 +1,4 @@
+import { generateStockInitialPrice } from '@kit/struct';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -12,16 +13,24 @@ export class StockService {
     private userService: UserService,
   ) {}
 
-  async init(userId: string) {
+  async init() {
     const companies = assets.companies as [string, string, string][];
-    // const user = await this.userService.findOneByID(userId);
     const stocks: Stock[] = companies.map((company) => {
       const [type, companyName, description] = company;
       const name = `${type} ${companyName}`;
+      const price = generateStockInitialPrice();
+      return {
+        name,
+        description,
+        price,
+        tags: [],
+      };
     });
+
+    await this.stockModel.create(stocks);
   }
 
   getAll() {
-    // return this.stockServer.query('SELECT * FROM stocks');
+    return this.stockModel.find();
   }
 }
