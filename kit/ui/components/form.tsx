@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
-import { cn } from "../../lib";
+import { cn } from "./../utils";
 
 interface Props<T extends FieldValues>
   extends Omit<DOMAttributes<HTMLFormElement>, "onSubmit">,

@@ -1,10 +1,10 @@
 import { Lock, Person } from "@gravity-ui/icons";
+import { Form, FormGrid } from "@kit/ui";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { api } from "../../../api";
 import { SignInDto } from "../../../api/auth";
-import { Form, FormGrid } from "../../../shared/ui/common/form";
 import { HttpError } from "../../../shared/ui/httpError";
 import { AuthButton } from "./_button";
 import { AuthInput } from "./_input";

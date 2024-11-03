@@ -17,26 +17,4 @@ export class CreateGameInput {
   balance: number;
 }
 
-export class UpdateGameInput extends PartialType(CreateGameInput) {
-  @IsString()
-  gameId: string;
-}
-
-// export class UpdateGameInput {
-//   @IsOptional()
-//   @IsString()
-//   jobId?: string;
-
-//   @IsOptional()
-//   @IsString()
-//   mood?: PlayerMood;
-
-//   @IsOptional()
-//   @IsArray()
-//   @IsString()
-//   creditIds?: string[];
-
-//   @IsOptional()
-//   @IsNumber()
-//   balance?: number;
-// }
+export class UpdateGameInput extends PartialType(CreateGameInput) {}

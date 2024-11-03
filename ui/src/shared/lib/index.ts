@@ -1,1 +1,2 @@
-export { cn } from "./mergeClassNames";
+// export { cn } from "./mergeClassNames";
+export { catchError } from "./catchError";

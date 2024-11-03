@@ -1,4 +1,4 @@
-import { cn } from "../../lib";
+import { cn } from "./../utils";
 import { Box, BoxProps } from "./box";
 
 type BadgeSize = "small" | "medium" | "large";

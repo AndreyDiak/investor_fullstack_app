@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
 import { JwtPayload } from 'src/common/strategies/accessToken.strategy';
 import { CreateGameInput, UpdateGameInput } from 'src/inputs/game.input';
@@ -19,6 +28,13 @@ export class GameController {
   }
 
   @UseGuards(AccessTokenGuard)
+  @Get('/:id')
+  getById(@Param() params: any) {
+    const gameId = params.id;
+    return this.gameService.getOne(gameId);
+  }
+
+  @UseGuards(AccessTokenGuard)
   @Post('/create')
   create(
     @Req() req: Request & { user: JwtPayload },
@@ -28,12 +44,16 @@ export class GameController {
   }
 
   @UseGuards(AccessTokenGuard)
-  @Post('/update')
-  update(
-    @Req() req: Request & { user: JwtPayload },
-    @Body() body: UpdateGameInput,
-  ) {
-    const { gameId, ...rest } = body;
-    return this.gameService.update(gameId, rest);
+  @Post('/:id/update')
+  update(@Param() params: any, @Body() body: UpdateGameInput) {
+    const gameId = params.id;
+    return this.gameService.update(gameId, body);
+  }
+
+  @UseGuards(AccessTokenGuard)
+  @Delete('/:id/delete')
+  delete(@Param() params: any) {
+    const gameId = params.id;
+    return this.gameService.delete(gameId);
   }
 }

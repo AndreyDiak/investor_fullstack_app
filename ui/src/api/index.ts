@@ -1,6 +1,6 @@
 import { StoreApi } from "zustand";
 import { AuthStore, useAuthStore } from "./auth";
-import { GamesStore, useGameStore } from "./games";
+import { GamesStore, useGamesStore } from "./games";
 
 class Api {
   auth: StoreApi<AuthStore>;
@@ -8,7 +8,7 @@ class Api {
 
   constructor() {
     this.auth = useAuthStore;
-    this.games = useGameStore;
+    this.games = useGamesStore;
   }
 }
 

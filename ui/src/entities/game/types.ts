@@ -11,3 +11,10 @@ export interface Game {
   mood: PlayerMood;
   credits: PlayerCredit[];
 }
+
+export interface GameCreateInput {
+  jobId: string;
+  creditIds: string[];
+  mood: PlayerMood;
+  balance: number;
+}

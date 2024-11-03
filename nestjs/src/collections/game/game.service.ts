@@ -24,7 +24,15 @@ export class GameService {
     });
   }
 
+  async getOne(gameId: string): Promise<Game | undefined> {
+    return await this.gameModel.findOne({ _id: gameId });
+  }
+
   async update(gameId: string, input: Omit<UpdateGameInput, 'gameId'>) {
     return await this.gameModel.updateOne({ _id: gameId }, input);
+  }
+
+  async delete(gameId: string) {
+    return await this.gameModel.deleteOne({ _id: gameId });
   }
 }

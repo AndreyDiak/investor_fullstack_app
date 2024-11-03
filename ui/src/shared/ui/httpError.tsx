@@ -1,4 +1,4 @@
-import { Badge } from "./common/badge";
+import { Badge } from "@kit/ui";
 
 export const HttpError = ({ error }: { error?: Error }) => {
   if (!error) return null;

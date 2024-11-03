@@ -3,14 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "imports": {
+    "#kit/ui/*": "../kit/ui/index.ts"
+  },
   "scripts": {
     "dev": "vite",
-    "docker-dev": "vite VITE_BACKEND_PORT=4000",
+    "docker-dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.25",
     "@tanstack/react-query": "^5.59.15",
     "axios": "^1.7.7",
     "framer-motion": "^11.11.9",
@@ -20,6 +24,7 @@
     "react-router-dom": "^6.27.0",
     "react-spinners": "^0.14.1",
     "react-toastify": "^10.0.6",
+    "vite-tsconfig-paths": "^5.0.1",
     "zustand": "^5.0.0"
   },
   "devDependencies": {

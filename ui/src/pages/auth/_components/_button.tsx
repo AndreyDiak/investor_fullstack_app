@@ -1,8 +1,7 @@
+import { CustomFormContext, cn } from "@kit/ui";
 import { ButtonHTMLAttributes, HTMLAttributes, useContext } from "react";
 import { useFormContext } from "react-hook-form";
 import { ScaleLoader } from "react-spinners";
-import { cn } from "../../../shared/lib";
-import { CustomFormContext } from "../../../shared/ui/common/form";
 
 interface Props
   extends HTMLAttributes<HTMLButtonElement>,
