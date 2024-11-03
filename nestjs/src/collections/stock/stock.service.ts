@@ -1,46 +1,27 @@
-// import { ClickHouseClient } from '@depyronick/nestjs-clickhouse';
-// import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Stock } from 'src/schemas/stock.schema';
+import assets from '../../../assets.json';
+import { UserService } from '../user/user.service';
 
-// interface Stock {
-//   createdAt: number;
-//   updatedAt: number;
-//   name: string;
-//   price: number;
-//   // ...
-// }
+@Injectable()
+export class StockService {
+  constructor(
+    @InjectModel(Stock.name) private stockModel: Model<Stock>,
+    private userService: UserService,
+  ) {}
 
-// @Injectable()
-// export class StockService {
-//   constructor(
-//     @Inject('STOCK_SERVER') private readonly stockServer: ClickHouseClient,
-//   ) {
-//     // this.stockServer.query('SELECT * FROM stocks')
-//   }
+  async init(userId: string) {
+    const companies = assets.companies as [string, string, string][];
+    // const user = await this.userService.findOneByID(userId);
+    const stocks: Stock[] = companies.map((company) => {
+      const [type, companyName, description] = company;
+      const name = `${type} ${companyName}`;
+    });
+  }
 
-//   init() {
-//     return this.stockServer.insert<Stock>('stocks', [
-//       {
-//         createdAt: new Date().getTime(),
-//         updatedAt: new Date().getTime(),
-//         name: 'OOO ЛеснойСАД',
-//         price: Number((Math.random() * 100).toFixed(1)),
-//       },
-//       {
-//         createdAt: new Date().getTime(),
-//         updatedAt: new Date().getTime(),
-//         name: 'OOO Солнышко',
-//         price: Number((Math.random() * 100).toFixed(1)),
-//       },
-//       {
-//         createdAt: new Date().getTime(),
-//         updatedAt: new Date().getTime(),
-//         name: 'OАО Кибер Безопасность',
-//         price: Number((Math.random() * 100).toFixed(1)),
-//       },
-//     ]);
-//   }
-
-//   getAll() {
-//     return this.stockServer.query('SELECT * FROM stocks');
-//   }
-// }
+  getAll() {
+    // return this.stockServer.query('SELECT * FROM stocks');
+  }
+}

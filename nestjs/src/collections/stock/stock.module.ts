@@ -1,25 +1,17 @@
-// import {
-//   ClickHouseDataFormat,
-//   ClickHouseModule,
-// } from '@depyronick/nestjs-clickhouse';
-// import { Module } from '@nestjs/common';
-// import { StockController } from './stock.controller';
-// import { StockService } from './stock.service';
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Stock, StockSchema } from 'src/schemas/stock.schema';
+import { UserService } from '../user/user.service';
+import { StockController } from './stock.controller';
+import { StockService } from './stock.service';
 
-// @Module({
-//   imports: [
-//     ClickHouseModule.register([
-//       {
-//         name: 'STOCK_SERVER',
-//         host: 'http://localhost',
-//         port: 8123,
-//         format: ClickHouseDataFormat.JSON,
-//         database: 'stock',
-//       },
-//     ]),
-//   ],
-//   controllers: [StockController],
-//   providers: [StockService],
-//   exports: [StockService],
-// })
-// export class StockModule {}
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: Stock.name, schema: StockSchema }]),
+    UserService,
+  ],
+  controllers: [StockController],
+  providers: [StockService],
+  exports: [StockService],
+})
+export class StockModule {}
