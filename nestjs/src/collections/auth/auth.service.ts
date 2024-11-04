@@ -59,9 +59,10 @@ export class AuthService {
       usernameCandidate._id.toString(),
       username,
     );
-    // await this.userService.updateOne(usernameCandidate._id.toString(), {
-    //   refreshToken: tokens.refreshToken,
-    // });
+
+    await this.userService.updateOne(usernameCandidate._id.toString(), {
+      refreshToken: tokens.refreshToken,
+    });
 
     return tokens;
   }
