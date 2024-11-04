@@ -19,7 +19,8 @@
     "noFallthroughCasesInSwitch": false,
     "resolveJsonModule": true,
     "paths": {
-      "@kit/struct": ["../kit/struct/index.ts"]
+      "@kit/struct": ["../kit/struct/index.ts"],
+      "@kit/entities": ["../kit/entities/index.ts"]
     }
   }
 }

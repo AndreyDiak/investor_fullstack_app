@@ -10,7 +10,6 @@ export class StockController {
   @UseGuards(AccessTokenGuard)
   @Post('/init')
   init(@Req() req: Request & { user: JwtPayload }) {
-    const userId = req.user.sub;
     return this.stockService.init();
   }
 

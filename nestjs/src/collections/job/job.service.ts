@@ -10,7 +10,8 @@ export class JobService {
 
   async create(payload: CreateJobInput) {
     const createdJob = new this.jobModel(payload);
-    return createdJob;
+    const job = await createdJob.save();
+    return job;
   }
 
   async updateOne(id: string, payload: UpdateJobInput) {

@@ -1,3 +1,4 @@
+import { CompanyTag } from '@kit/entities';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
@@ -15,7 +16,10 @@ export class Stock {
   price: number;
 
   @Prop()
-  tags: string[];
+  tags: CompanyTag[];
+
+  @Prop()
+  count: number;
 }
 
 export const StockSchema = SchemaFactory.createForClass(Stock);
