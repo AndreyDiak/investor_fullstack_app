@@ -17,11 +17,13 @@ export function generateStockInitialPrice() {
 
   return price;
 }
+
 /**
  * 50% - chance to first price range
  * 35% - chance to second price range
  * 15% - chance to third price range
  */
+
 const variants = [
   {
     min: 500,
