@@ -4,10 +4,8 @@ import { PlayerMood } from 'src/common/types/mood'
 
 export type GameDocument = HydratedDocument<Game>;
 
-@Schema({ collection: 'games', timestamps: true })
+@Schema({ collection: 'credits', timestamps: true })
 export class Game {
-  @Prop()
-  ownerId: string;
 
   @Prop()
   day: number;
@@ -25,4 +23,4 @@ export class Game {
   jobId: string;
 }
 
-export const GameSchema = SchemaFactory.createForClass(Game);
+export const CreditSchema = SchemaFactory.createForClass(Game);
