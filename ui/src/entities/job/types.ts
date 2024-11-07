@@ -1,8 +1,9 @@
-export interface PlayerJob {
+export interface Job {
   id: string;
   name: string;
-  src: string;
-  salary: number;
+  // src: string;
+  type: string;
+  // salary: number;
   startSalary: number;
-  firstDayOnWork: number;
+  // firstDayOnWork: number;
 }
