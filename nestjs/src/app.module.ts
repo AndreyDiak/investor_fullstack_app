@@ -5,6 +5,7 @@ import { ThrottlerModule } from '@nestjs/throttler'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { AuthModule } from './collections/auth/auth.module'
+import { StockModule } from './collections/stock/stock.module'
 import { UserModule } from './collections/user/user.module'
 
 @Module({
@@ -13,6 +14,7 @@ import { UserModule } from './collections/user/user.module'
     ThrottlerModule.forRoot([{ limit: 10, ttl: 60 }]),
     MongooseModule.forRoot(process.env.DATABASE_URI),
     AuthModule,
+    StockModule,
     UserModule,
   ],
   controllers: [AppController],

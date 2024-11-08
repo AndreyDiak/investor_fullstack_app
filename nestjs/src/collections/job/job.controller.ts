@@ -6,10 +6,10 @@ import {
   Post,
   Put,
   UseGuards,
-} from '@nestjs/common';
-import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
-import { CreateJobInput, UpdateJobInput } from 'src/inputs/job.input';
-import { JobService } from './job.service';
+} from '@nestjs/common'
+import { AccessTokenGuard } from 'src/common/guards/accessToken.guard'
+import { CreateJobInput, UpdateJobInput } from 'src/inputs/job.input'
+import { JobService } from './job.service'
 
 @Controller('jobs')
 export class JobController {
@@ -31,5 +31,11 @@ export class JobController {
   @Put('/:id')
   updateOne(@Param('id') id: string, @Body() body: UpdateJobInput) {
     return this.jobService.updateOne(id, body);
+  }
+
+  @UseGuards(AccessTokenGuard)
+  @Post("/init")
+  init() {
+    return this.jobService
   }
 }
