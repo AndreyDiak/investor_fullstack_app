@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { CreateGameInput, UpdateGameInput } from 'src/inputs/game.input';
-import { GameCreationPayload } from 'src/payloads/game.payload';
-import { Game } from 'src/schemas/game.schema';
+import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
+import { CreateGameInput, UpdateGameInput } from 'src/inputs/game.input'
+import { GameCreationPayload } from 'src/payloads/game.payload'
+import { Game } from 'src/schemas/game.schema'
 
 @Injectable()
 export class GameService {

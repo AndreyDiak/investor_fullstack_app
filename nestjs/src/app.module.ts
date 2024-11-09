@@ -1,12 +1,14 @@
-import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
-import { MongooseModule } from '@nestjs/mongoose'
-import { ThrottlerModule } from '@nestjs/throttler'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { AuthModule } from './collections/auth/auth.module'
-import { StockModule } from './collections/stock/stock.module'
-import { UserModule } from './collections/user/user.module'
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AuthModule } from './collections/auth/auth.module';
+import { GameModule } from './collections/game/game.module';
+import { JobModule } from './collections/job/job.module';
+import { StockModule } from './collections/stock/stock.module';
+import { UserModule } from './collections/user/user.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { UserModule } from './collections/user/user.module'
     AuthModule,
     StockModule,
     UserModule,
+    GameModule,
+    JobModule,
   ],
   controllers: [AppController],
   providers: [AppService],

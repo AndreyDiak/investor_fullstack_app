@@ -7,14 +7,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Stock } from 'src/schemas/stock.schema';
-import { UserService } from '../user/user.service';
 
 @Injectable()
 export class StockService {
-  constructor(
-    @InjectModel(Stock.name) private stockModel: Model<Stock>,
-    private userService: UserService,
-  ) {}
+  constructor(@InjectModel(Stock.name) private stockModel: Model<Stock>) {}
 
   async init() {
     const stocks: Stock[] = companies.map((company) => {
