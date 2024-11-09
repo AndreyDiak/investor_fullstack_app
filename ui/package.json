@@ -7,8 +7,8 @@
     "#kit/ui/*": "../kit/ui/index.ts"
   },
   "scripts": {
-    "dev": "vite VITE_MODE=dev",
-    "make": "vite VITE_MODE=make",
+    "dev": "vite --mode manual",
+    "make": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"

@@ -1,14 +1,9 @@
-import axios from "axios"
+import axios from "axios";
 
-const mode = import.meta.env.VITE_MODE;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
-const MAKE_PORT = import.meta.env.VITE_BACKEND_DEV_PORT;
-
-const port = mode === 'dev' ? PORT : MAKE_PORT
-
 export const http = axios.create({
-  baseURL: `http://localhost:${port}/v1`,
-  // withCredentials: true,
+  baseURL: `http://localhost:${PORT}/v1`,
+  withCredentials: true,
 });
 
 http.interceptors.response.use(
