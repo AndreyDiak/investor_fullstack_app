@@ -1,19 +1,19 @@
 version: "3.8"
 services:
   # app service for your backend
-  # app:
-  #   container_name: backend
-  #   build:
-  #     context: ./nestjs
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     DATABASE_URI: mongodb://db:27017
-  #     JWT_ACCESS_SECRET: some_secret_value_for_access
-  #     JWT_REFRESH_SECRET: some_secret_value_for_refresh
-  #   ports:
-  #     - "4000:4000"
-  #   depends_on:
-  #     - db
+  app:
+    container_name: backend
+    build:
+      context: ./nestjs
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URI: mongodb://db:27017
+      JWT_ACCESS_SECRET: some_secret_value_for_access
+      JWT_REFRESH_SECRET: some_secret_value_for_refresh
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
   # start the mongodb service as container
   db:
     image: mongo:latest
