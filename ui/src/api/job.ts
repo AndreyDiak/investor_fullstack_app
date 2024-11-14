@@ -8,9 +8,13 @@ export const useJobsStore = create<JobsStore>((set) => ({
     const { data: jobs } = await http.get("/jobs");
     set({ data: jobs });
   },
+  init: async () => {
+    await http.post("/jobs/init")
+  }
 }));
 
 export interface JobsStore {
   data?: Job[];
   fetch: () => Promise<void>;
+  init: () => Promise<void>
 }

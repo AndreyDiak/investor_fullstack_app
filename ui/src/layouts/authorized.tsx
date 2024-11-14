@@ -1,15 +1,14 @@
-import { Fragment, useCallback, useEffect, useLayoutEffect } from "react";
+import { Box } from "@kit/ui";
+import { Fragment, useCallback, useLayoutEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { api } from "../api";
-import { useAuthStore } from "../api/auth";
+import { useInit } from "../shared/hooks";
 import { catchError } from "../shared/lib/catchError";
 
 export const AuthorizedLayout = () => {
   const navigate = useNavigate();
 
   const fetchUser = api.auth.getState().me;
-  const user = useAuthStore((state) => state.data);
-
   const check = useCallback(async () => {
     const [error, user] = await catchError(fetchUser());
     if (error || !user) {
@@ -17,11 +16,19 @@ export const AuthorizedLayout = () => {
     }
   }, []);
 
+  const loading = useInit();
+
   useLayoutEffect(() => {
     check();
   }, []);
 
-  useEffect(() => {}, [user]);
+  if (loading) {
+    return (
+      <Box>
+        Init APP...
+      </Box>
+    );
+  }
 
   return (
     <Fragment>

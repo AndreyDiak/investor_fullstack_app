@@ -13,19 +13,25 @@ export const CreateGameDialog = () => {
 	useEffect(() => {
 		fetchJobs();
 	}, []);
+
 	return (
 		<Fragment>
 			<DialogHeader>
 				<DialogHeading>Creating new Game</DialogHeading>
 			</DialogHeader>
-			<DialogBody>
-				{jobs?.map((job) => (
-					<Box>
-						<img src={`/assets/jobs/${job.type}`} />
-						{job.name}
-						{job.startSalary}
-					</Box>
-				))}
+			<DialogBody className="py-4">
+				<Box className="flex flex-row gap-16">
+					{jobs?.map((job) => (
+						<Box>
+							<img
+								src={`/jobs/${job.type}.jpeg`}
+								className="w-[300px] h-[400px] overflow-hidden rounded-md"
+							/>
+							<Box>{job.name}</Box>
+							<Box>{job.startSalary}</Box>
+						</Box>
+					))}
+				</Box>
 			</DialogBody>
 		</Fragment>
 	);
