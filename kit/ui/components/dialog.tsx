@@ -76,7 +76,7 @@ function useDialog({
       placement,
       size,
     }),
-    [open, setOpen, interactions, data, size, placement]
+    [open, setOpen, interactions, data, size, placement],
   );
 }
 
@@ -121,9 +121,9 @@ export const DialogTrigger = forwardRef<HTMLElement, DialogTriggerProps>(
         ...props,
         ...children.props,
         "data-state": context.open ? "open" : "closed",
-      })
+      }),
     );
-  }
+  },
 );
 
 export const DialogContent = forwardRef<
@@ -152,7 +152,7 @@ export const DialogContent = forwardRef<
             ref={ref}
             className={cn(
               props.className,
-              "bg-white rounded-xl flex flex-col items-center justify-stretch overflow-auto border-none outline-none max-h-[80vh]"
+              "bg-white rounded-xl flex flex-col items-center justify-stretch overflow-auto border-none outline-none max-h-[80vh]",
             )}
             {...context.getFloatingProps(props)}
             style={{
@@ -173,13 +173,16 @@ export const DialogHeader = forwardRef<HTMLDivElement, BoxProps>(
     return (
       <Box
         ref={ref}
-        className={cn(className, "p-6 flex gap-10 w-full items-start ")}
+        className={cn(
+          className,
+          "px-6 pt-4 pb-2 flex gap-10 w-full items-start ",
+        )}
         {...props}
       >
         {children}
       </Box>
     );
-  }
+  },
 );
 
 export const DialogHeading = (props: Partial<HeadingProps>) => {
@@ -197,7 +200,7 @@ export const DialogBody = forwardRef<HTMLDivElement, BoxProps>(
         {children}
       </Box>
     );
-  }
+  },
 );
 
 function getDialogSizeCn(size: DialogSize): CSSProperties {

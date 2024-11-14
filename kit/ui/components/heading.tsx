@@ -6,19 +6,20 @@ export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
 }
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ level, ...rest }, ref) => {
+  ({ level, className, ...rest }, ref) => {
     const HTMLTag = `h${level}` as const;
     return (
       <HTMLTag
         ref={ref}
         className={cn(
+          className,
           "text-[#393939] m-0 p-0 font-normal text-",
-          getHeadingCn(level)
+          getHeadingCn(level),
         )}
         {...rest}
       />
     );
-  }
+  },
 );
 
 function getHeadingCn(level: HeadingProps["level"]) {
