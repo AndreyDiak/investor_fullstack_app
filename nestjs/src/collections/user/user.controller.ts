@@ -7,8 +7,6 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { Role } from 'src/common/entities/role.enum';
-import { Roles } from 'src/common/entities/roles.decorator';
 import { CreateUserInput, UpdateUserInput } from 'src/inputs/user.input';
 import { UserService } from './user.service';
 
@@ -40,7 +38,6 @@ export class UserController {
   }
 
   @Delete('/:id')
-  @Roles(Role.Admin)
   deleteOne(@Param('id') id: string) {
     return this.userService.deleteOne(id);
   }

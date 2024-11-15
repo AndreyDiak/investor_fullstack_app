@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  ForbiddenException,
-  Injectable,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as argon2 from 'argon2';
@@ -71,56 +67,17 @@ export class AuthService {
     return this.userService.updateOne(userID, { refreshToken: null });
   }
 
-  async refreshTokens(userID: string, refreshToken: string) {
-    const user = await this.userService.findOneByID(userID);
-    if (!user || !user.refreshToken) {
-      throw new ForbiddenException('Access Denied');
-    }
-    const refreshTokenMatches = await argon2.verify(
-      user.refreshToken,
-      refreshToken,
-    );
-    if (!refreshTokenMatches) {
-      throw new ForbiddenException('Access Denied');
-    }
-    const tokens = await this.getTokens(userID, user.username);
-    await this.updateRefreshToken(userID, tokens.refreshToken);
-    return tokens;
-  }
-
-  async updateRefreshToken(userID: string, refresh_token: string) {
-    const hashedrefresh_token = await argon2.hash(refresh_token);
-    await this.userService.updateOne(userID, {
-      refreshToken: hashedrefresh_token,
-    });
-  }
-
   async getTokens(userID: string, username: string) {
     const [accessToken, refreshToken] = await Promise.all([
-      this.jwtService.signAsync(
-        {
-          sub: userID,
-          username,
-        },
-        {
-          secret: this.configService.get('JWT_ACCESS_SECRET'),
-          expiresIn: '15m',
-        },
-      ),
-      this.jwtService.signAsync(
-        {
-          sub: userID,
-          username,
-        },
-        {
-          secret: this.configService.get('JWT_REFRESH_SECRET'),
-          expiresIn: '7d',
-        },
-      ),
+      this.jwtService.signAsync({
+        sub: userID,
+        username,
+      }),
+      this.jwtService.signAsync({
+        sub: userID,
+        username,
+      }),
     ]);
-    return {
-      accessToken,
-      refreshToken,
-    };
+    return { accessToken, refreshToken };
   }
 }

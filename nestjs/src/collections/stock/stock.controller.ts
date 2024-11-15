@@ -1,13 +1,11 @@
-import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
-import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
-import { JwtPayload } from 'src/common/strategies/accessToken.strategy';
+import { Controller, Get, Post, Req } from '@nestjs/common';
+import { JwtPayload } from 'src/common/types/jwt';
 import { StockService } from './stock.service';
 
 @Controller('stocks')
 export class StockController {
   constructor(private readonly stockService: StockService) {}
 
-  @UseGuards(AccessTokenGuard)
   @Post('/init')
   init(@Req() req: Request & { user: JwtPayload }) {
     return this.stockService.init();
