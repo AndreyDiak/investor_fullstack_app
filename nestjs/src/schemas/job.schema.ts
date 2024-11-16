@@ -6,6 +6,9 @@ export type PostDocument = HydratedDocument<Job>;
 @Schema({ collection: 'jobs' })
 export class Job {
   @Prop()
+  gameId: string;
+
+  @Prop()
   name: string;
 
   @Prop()

@@ -1,26 +1,24 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { HydratedDocument } from 'mongoose'
-import { PlayerMood } from 'src/common/types/mood'
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
 
-export type GameDocument = HydratedDocument<Game>;
+export type CreditDocument = HydratedDocument<Credit>;
 
 @Schema({ collection: 'credits', timestamps: true })
-export class Game {
+export class Credit {
+  @Prop()
+  gameId: string;
 
   @Prop()
-  day: number;
+  name: string;
 
   @Prop()
-  balance: number;
+  amount: number;
 
   @Prop()
-  mood: PlayerMood;
+  repaidAmount: number;
 
   @Prop()
-  creditIds: string[];
-
-  @Prop()
-  jobId: string;
+  payment: number;
 }
 
-export const CreditSchema = SchemaFactory.createForClass(Game);
+export const CreditSchema = SchemaFactory.createForClass(Credit);

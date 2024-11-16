@@ -26,9 +26,8 @@ export class GameController {
   }
 
   @Get('/:id')
-  getById(@Param() params: any) {
-    const gameId = params.id;
-    return this.gameService.getOne(gameId);
+  getById(@Param() id: string) {
+    return this.gameService.getOne(id);
   }
 
   @Post('/create')
@@ -45,8 +44,7 @@ export class GameController {
   }
 
   @Delete('/:id')
-  delete(@Param() params: any) {
-    const gameId = params.id;
-    return this.gameService.delete(gameId);
+  delete(@Param() id: string) {
+    return this.gameService.delete(id);
   }
 }

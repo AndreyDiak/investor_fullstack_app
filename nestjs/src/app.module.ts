@@ -5,7 +5,9 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './collections/auth/auth.module';
+import { CreditModule } from './collections/credit/credit.module';
 import { GameModule } from './collections/game/game.module';
+import { GameTemplateModule } from './collections/game_template/game_template.module';
 import { JobModule } from './collections/job/job.module';
 import { StockModule } from './collections/stock/stock.module';
 import { UserModule } from './collections/user/user.module';
@@ -19,7 +21,9 @@ import { UserModule } from './collections/user/user.module';
     StockModule,
     UserModule,
     GameModule,
+    GameTemplateModule,
     JobModule,
+    CreditModule,
   ],
   controllers: [AppController],
   providers: [AppService],

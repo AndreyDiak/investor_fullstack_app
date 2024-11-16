@@ -36,13 +36,6 @@ export class AuthController {
     return this.authService.signOut(userID);
   }
 
-  // @UseGuards(RefreshTokenGuard)
-  // @Get('refresh')
-  // refreshTokens(@Req() req: Request & { user: JwtRefreshPayload }) {
-  //   const { sub: userID, refreshToken } = req.user;
-  //   return this.authService.refreshTokens(userID, refreshToken);
-  // }
-
   @UseGuards(AuthGuard)
   @Get('/me')
   me(@Req() req: Request & { user: JwtPayload }) {

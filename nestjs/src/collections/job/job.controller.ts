@@ -23,9 +23,4 @@ export class JobController {
   updateOne(@Param('id') id: string, @Body() body: UpdateJobInput) {
     return this.jobService.updateOne(id, body);
   }
-
-  @Post('/init')
-  init() {
-    return this.jobService.init();
-  }
 }
