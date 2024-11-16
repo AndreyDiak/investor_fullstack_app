@@ -10,11 +10,11 @@ export class GameTemplateService {
     @InjectModel(Template.name) private templateModel: Model<Template>,
   ) {}
 
-  async getAll() {
-    return this.templateModel.find();
-  }
-
-  async init() {
+  async obtain() {
+    const templates = await this.templateModel.find();
+    if (templates.length !== 0) {
+      return templates;
+    }
     return await this.templateModel.create(gameTemplates);
   }
 

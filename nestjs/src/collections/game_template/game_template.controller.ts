@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Post } from '@nestjs/common';
+import { Controller, Delete, Get } from '@nestjs/common';
 import { GameTemplateService } from './game_template.service';
 
 @Controller({
@@ -10,12 +10,7 @@ export class GameTemplateController {
 
   @Get('/')
   getAll() {
-    return this.gameTemplateService.getAll();
-  }
-
-  @Post('/init')
-  init() {
-    return this.gameTemplateService.init();
+    return this.gameTemplateService.obtain();
   }
 
   @Delete('/')
