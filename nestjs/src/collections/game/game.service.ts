@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common'
-import { InjectModel } from '@nestjs/mongoose'
-import { Model } from 'mongoose'
-import { CreateGameInput, UpdateGameInput } from 'src/inputs/game.input'
-import { GameCreationPayload } from 'src/payloads/game.payload'
-import { Game } from 'src/schemas/game.schema'
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, RootFilterQuery } from 'mongoose';
+import { CreateGameInput, UpdateGameInput } from 'src/inputs/game.input';
+import { GameCreationPayload } from 'src/payloads/game.payload';
+import { Game } from 'src/schemas/game.schema';
 
 @Injectable()
 export class GameService {
@@ -20,12 +20,16 @@ export class GameService {
     });
   }
 
-  async getAll(userId: string) {
-    return await this.gameModel.find({ ownerId: userId });
+  async getAll() {
+    return await this.gameModel.find();
   }
 
   async getOne(id: string): Promise<Game | undefined> {
     return this.gameModel.findById(id);
+  }
+
+  async getByFilter(filter?: RootFilterQuery<Game>): Promise<Game[]> {
+    return this.gameModel.find(filter);
   }
 
   async updateOne(id: string, payload: Omit<UpdateGameInput, 'gameId'>) {

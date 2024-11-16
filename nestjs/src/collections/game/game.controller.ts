@@ -20,9 +20,14 @@ export class GameController {
   constructor(private readonly gameService: GameService) {}
 
   @Get('/')
-  getAll(@Req() req: Request & { user: JwtPayload }) {
-    const userId = req.user.sub;
-    return this.gameService.getAll(userId);
+  getAll() {
+    return this.gameService.getAll();
+  }
+
+  @Get('/my')
+  getMy(@Req() req: Request & { user: JwtPayload }) {
+    const userID = req.user.sub;
+    return this.gameService.getByFilter({ ownerId: userID });
   }
 
   @Get('/:id')
