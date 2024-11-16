@@ -21,7 +21,7 @@ export const MenuPreviewCard = ({ game }: { game?: Game }) => {
             <BaseButton className="flex flex-col items-center">
               <Plus width={30} height={30} color="#fff" />
               <span className="text-2xl font-semibold font-main text-white">
-                New Game
+                Новая игра
               </span>
             </BaseButton>
           </CardWrapper>
@@ -45,10 +45,10 @@ const CardWrapper = forwardRef<HTMLDivElement, BoxProps>(
           className,
           `border-emerald-900 border-2 rounded-2xl pt-8 px-6 pb-4 
           flex justify-center w-[450px] h-[600px] items-center bg-teal-600 
-          cursor-pointer duration-300 hover:scale-105 ease-in-out`,
+          cursor-pointer duration-300 hover:scale-105 ease-in-out`
         )}
         {...rest}
       />
     );
-  },
+  }
 );

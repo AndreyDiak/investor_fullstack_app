@@ -1,21 +1,36 @@
 import { Box } from "@kit/ui";
-import { useEffect } from "react";
-import { useGamesStore } from "../../api/games";
+import { useEffect, useMemo } from "react";
+import { toast } from "react-toastify";
+import { useGameStore } from "../../api/game";
+import { useStoreFetch } from "../../shared/hooks/use_store_fetch";
 import { MenuPreviewCard } from "./_components/preview_card";
 
 const MAX_GAMES_SIZE = 3;
 
 export const MenuPage = () => {
-  const fetch = useGamesStore((state) => state.fetch);
-  const games = useGamesStore((state) => state.data);
+  const [games, loading, error, fetchMy] = useStoreFetch(
+    useGameStore((state) => state.fetchMy)
+  );
 
   useEffect(() => {
-    fetch();
+    fetchMy();
   }, []);
 
-  const previewGames = Array(MAX_GAMES_SIZE)
-    .fill(null)
-    .map((_, index) => games?.[index]);
+  const previewGames = useMemo(
+    () =>
+      Array(MAX_GAMES_SIZE)
+        .fill(null)
+        .map((_, index) => games?.[index]),
+    [games]
+  );
+
+  if (loading) {
+    return <Box>loading...</Box>;
+  }
+
+  if (error) {
+    toast.error(error.message);
+  }
 
   return (
     <Box className="w-full h-screen flex items-center justify-center bg-[url(/public/menu.jpeg)] bg-cover">

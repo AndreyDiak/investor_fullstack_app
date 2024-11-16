@@ -1,9 +1,7 @@
-import { Box } from "@kit/ui";
-import { Fragment, useCallback, useLayoutEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { api } from "../api";
-import { useInit } from "../shared/hooks";
-import { catchError } from "../shared/lib/catchError";
+import { Fragment, useCallback, useEffect } from "react"
+import { Outlet, useNavigate } from "react-router-dom"
+import { api } from "../api"
+import { catchError } from "../shared/lib/catchError"
 
 export const AuthorizedLayout = () => {
   const navigate = useNavigate();
@@ -16,20 +14,11 @@ export const AuthorizedLayout = () => {
     }
   }, []);
 
-  const loading = useInit();
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     check();
   }, []);
 
-  if (loading) {
-    return (
-      <Box>
-        Init APP...
-      </Box>
-    );
-  }
-
+  
   return (
     <Fragment>
       <Outlet />
