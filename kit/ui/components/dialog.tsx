@@ -76,7 +76,7 @@ function useDialog({
       placement,
       size,
     }),
-    [open, setOpen, interactions, data, size, placement],
+    [open, setOpen, interactions, data, size, placement]
   );
 }
 
@@ -121,15 +121,15 @@ export const DialogTrigger = forwardRef<HTMLElement, DialogTriggerProps>(
         ...props,
         ...children.props,
         "data-state": context.open ? "open" : "closed",
-      }),
+      })
     );
-  },
+  }
 );
 
 export const DialogContent = forwardRef<
   HTMLDialogElement,
   HTMLProps<HTMLDialogElement>
->((props, propRef) => {
+>(({ className, children, ...rest }, propRef) => {
   const {
     context: floatingContext,
     size,
@@ -146,21 +146,29 @@ export const DialogContent = forwardRef<
   }
   return (
     <FloatingPortal>
-      <FloatingOverlay className="overflow-hidden flex" lockScroll>
+      <FloatingOverlay
+        className="overflow-hidden"
+        lockScroll
+        style={{
+          backdropFilter: "blur(4px)",
+          backgroundColor: "rgba(0,0,0,0.5)",
+        }}
+      >
         <FloatingFocusManager context={floatingContext}>
           <dialog
             ref={ref}
             className={cn(
-              props.className,
-              "bg-white rounded-xl flex flex-col items-center justify-stretch overflow-auto border-none outline-none max-h-[80vh]",
+              "bg-white rounded-xl flex flex-col items-center justify-stretch overflow-auto border-none outline-none active:border-none active:outline-none max-h-[80vh]",
+              sizeCn,
+              className
             )}
-            {...context.getFloatingProps(props)}
+            {...context.getFloatingProps(rest)}
             style={{
-              ...sizeCn,
+              // ...sizeCn,
               ...placementCn,
             }}
           >
-            {props.children}
+            {children}
           </dialog>
         </FloatingFocusManager>
       </FloatingOverlay>
@@ -174,19 +182,22 @@ export const DialogHeader = forwardRef<HTMLDivElement, BoxProps>(
       <Box
         ref={ref}
         className={cn(
-          className,
-          "px-6 pt-4 pb-2 flex gap-10 w-full items-start ",
+          "px-6 py-2 flex gap-10 w-full items-start rounded-tl-2",
+          className
         )}
         {...props}
       >
         {children}
       </Box>
     );
-  },
+  }
 );
 
-export const DialogHeading = (props: Partial<HeadingProps>) => {
-  return <Heading level={2} {...props} />;
+export const DialogHeading = ({
+  className,
+  ...rest
+}: Partial<HeadingProps>) => {
+  return <Heading className={cn(className)} level={2} {...rest} />;
 };
 
 export const DialogBody = forwardRef<HTMLDivElement, BoxProps>(
@@ -194,37 +205,27 @@ export const DialogBody = forwardRef<HTMLDivElement, BoxProps>(
     return (
       <Box
         ref={ref}
-        className={cn(className, "px-6 pb-6 overflow-auto w-full")}
+        className={cn("p-6 overflow-auto w-full", className)}
         {...props}
       >
         {children}
       </Box>
     );
-  },
+  }
 );
 
-function getDialogSizeCn(size: DialogSize): CSSProperties {
+function getDialogSizeCn(size: DialogSize): string {
   switch (size) {
     case "small":
-      return {
-        width: "400px",
-      };
+      return "w-[420px]";
     case "medium":
-      return {
-        width: "50%",
-      };
+      return "w-1/2";
     case "large":
-      return {
-        width: "75%",
-      };
+      return "w-3/4";
     case "screen":
-      return {
-        width: "92.5%",
-      };
+      return "w-11/12";
     default:
-      return {
-        width: "400px",
-      };
+      return "w-[420px]";
   }
 }
 

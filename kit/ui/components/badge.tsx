@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { cn } from "./../utils";
 import { Box, BoxProps } from "./box";
 
@@ -23,16 +24,32 @@ export const Badge = ({
           medium: "py-2 px-3 text-base rounded",
           large: "py-3 px-4 text-lg rounded-md",
         }[size],
-        {
-          danger: "bg-red-300 text-red-600",
-          secondary: "bg-gray-200 text-gray-700",
-          warning: "bg-yellow-200 text-yellow-500",
-          primary: "bg-emerald-200 text-emerald-700",
-        }[variant],
         "font-medium",
         className
       )}
+      style={{
+        ...badgeVariantToBgColorMap[variant],
+      }}
       {...rest}
     />
   );
+};
+
+const badgeVariantToBgColorMap: Record<BadgeVariants, CSSProperties> = {
+  danger: {
+    backgroundColor: "#fca5a5",
+    color: "#dc2626",
+  },
+  primary: {
+    backgroundColor: "#a7f3d0",
+    color: "#047857",
+  },
+  secondary: {
+    backgroundColor: "#e5e7eb",
+    color: "#374151",
+  },
+  warning: {
+    backgroundColor: "#a7f3d0",
+    color: "#eab308",
+  },
 };

@@ -12,14 +12,14 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
       <HTMLTag
         ref={ref}
         className={cn(
-          className,
           "text-[#393939] m-0 p-0 font-normal text-",
           getHeadingCn(level),
+          className
         )}
         {...rest}
       />
     );
-  },
+  }
 );
 
 function getHeadingCn(level: HeadingProps["level"]) {
