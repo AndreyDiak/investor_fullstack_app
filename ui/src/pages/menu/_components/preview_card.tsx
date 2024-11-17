@@ -15,7 +15,7 @@ import { CreateGameDialog } from "./_create_game_dialog";
 export const MenuPreviewCard = ({ game }: { game?: Game }) => {
   if (!game) {
     return (
-      <DialogWrapper size="screen" placement="top">
+      <DialogWrapper placement="top">
         <DialogTrigger>
           <CardWrapper className="hover:bg-teal-700 hover:border-teal-700">
             <BaseButton className="flex flex-col items-center">

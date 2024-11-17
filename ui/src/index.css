@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--aqua: #006064;
+	--aqua-light: #006b6e;
+}

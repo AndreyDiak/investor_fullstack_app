@@ -8,12 +8,15 @@ import { MenuPreviewCard } from "./_components/preview_card";
 const MAX_GAMES_SIZE = 3;
 
 export const MenuPage = () => {
-  const [games, loading, error, fetchMy] = useStoreFetch(
-    useGameStore((state) => state.fetchMy)
-  );
+  const {
+    data: games,
+    loading,
+    error,
+    fetch,
+  } = useStoreFetch(useGameStore((state) => state.fetchMy));
 
   useEffect(() => {
-    fetchMy();
+    fetch();
   }, []);
 
   const previewGames = useMemo(

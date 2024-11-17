@@ -1,10 +1,10 @@
 import { Envelope, Lock, Person } from "@gravity-ui/icons";
 import { Form, FormGrid } from "@kit/ui";
-import { useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { api } from "../../../api";
+import { useAuthStore } from "../../../api/auth";
+import { useStoreFetch } from "../../../shared/hooks/use_store_fetch";
 import { HttpError } from "../../../shared/ui/httpError";
 import { AuthButton } from "./_button";
 import { AuthInput } from "./_input";
@@ -40,10 +40,14 @@ export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
     setError,
     formState: { errors },
   } = form;
-  const { mutateAsync: onSubmit } = useMutation({
-    mutationFn: api.auth.getState().signUp,
-    onError: setHttpError,
-  });
+  const { fetch } = useStoreFetch(
+    useAuthStore((state) => state.signUp),
+    {
+      onSuccess,
+      onError: setHttpError,
+    }
+  );
+
   const handleSubmit = async (data: FormProps) => {
     if (data.password !== data?.repeatPassword) {
       setError("repeatPassword", {
@@ -53,7 +57,7 @@ export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
     }
     const mutable = structuredClone(data);
     delete mutable.repeatPassword;
-    await onSubmit(mutable);
+    await fetch(mutable);
   };
   return (
     <Form

@@ -1,42 +1,66 @@
-import { DialogBody, DialogHeader, DialogHeading } from "@kit/ui";
+import { Box, DialogBody, DialogHeader, DialogHeading } from "@kit/ui";
 import { Fragment, useCallback, useEffect } from "react";
 import { useGameStore } from "../../../api/game";
 import { useTemplateStore } from "../../../api/template";
+import { CreditsDisplay } from "../../../entities/credit/display";
 import { useStoreFetch } from "../../../shared/hooks/use_store_fetch";
+import { DifficultyDisplay } from "../../../shared/ui/difficulty_display";
+import { MoneyDisplay } from "../../../shared/ui/money_display";
+import { Text } from "../../../shared/ui/text";
 
 export const CreateGameDialog = () => {
-  // const { fetch: fetchJobs, data: jobs } = useJobsStore();
-  const [templates, loading, error, fetchTemplates] = useStoreFetch(
-    useTemplateStore((state) => state.fetch)
-  );
+  const {
+    data: templates,
+    loading,
+    error,
+    fetch,
+  } = useStoreFetch(useTemplateStore((state) => state.fetch));
   const create = useGameStore((state) => state.create);
 
   const handleCreate = useCallback(() => {}, []);
 
   useEffect(() => {
-    fetchTemplates().then((promise) => {
-      console.log({ promise });
-    });
+    fetch();
   }, []);
+
+  if (loading) {
+    return "...";
+  }
 
   return (
     <Fragment>
-      <DialogHeader>
-        <DialogHeading>Создать новую игру</DialogHeading>
+      <DialogHeader className="bg-[var(--aqua-light)]">
+        <DialogHeading className="text-white font-semibold font-main">
+          <Text>Создать новую игру</Text>
+        </DialogHeading>
       </DialogHeader>
-      <DialogBody className="py-4">
-        {/* <Box className="flex flex-row gap-16">
-          {templates?.map((template) => (
-            <Box>
+      <DialogBody className="flex gap-4 py-4 bg-[var(--aqua)]">
+        {templates?.map((template) => (
+          <Box className="p-6 rounded-lg flex-1">
+            <Box className="flex flex-col gap-2">
               <img
-                src={`/jobs/${job.type}.jpeg`}
-                className="w-[300px] h-[400px] overflow-hidden rounded-md"
+                src={`/jobs/${template.job.type}.jpeg`}
+                className="w-full overflow-hidden rounded-md object-cover"
               />
-              <Box>{job.name}</Box>
-              <Box>{job.startSalary}</Box>
+              <Box className="flex justify-between gap-8 items-center">
+                <Text>Зарплата</Text>
+                <MoneyDisplay
+                  className="text-white font-semibold"
+                  count={template.job.startSalary}
+                  variant={2}
+                />
+              </Box>
+              <DifficultyDisplay
+                difficulty={template.difficulty}
+                className="w-fit ml-auto"
+              />
+              <Text className="font-semibold text-[#b4b2b2]">
+                {template.job.name}
+              </Text>
             </Box>
-          ))}
-        </Box> */}
+            <CreditsDisplay credits={template.credits} hideRepaidAmount />
+          </Box>
+        ))}
       </DialogBody>
     </Fragment>
   );
