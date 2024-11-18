@@ -15,8 +15,8 @@ export const CreateGameDialog = () => {
     error,
     fetch,
   } = useStoreFetch(useTemplateStore((state) => state.fetch));
-  const create = useGameStore((state) => state.create);
 
+  const create = useGameStore((state) => state.create);
   const handleCreate = useCallback(() => {}, []);
 
   useEffect(() => {
@@ -36,11 +36,11 @@ export const CreateGameDialog = () => {
       </DialogHeader>
       <DialogBody className="flex gap-4 py-4 bg-[var(--aqua)]">
         {templates?.map((template) => (
-          <Box className="p-6 rounded-lg flex-1">
+          <Box className="p-6 rounded-lg">
             <Box className="flex flex-col gap-2">
               <img
                 src={`/jobs/${template.job.type}.jpeg`}
-                className="w-full overflow-hidden rounded-md object-cover"
+                className="overflow-hidden rounded-md object-cover"
               />
               <Box className="flex justify-between gap-8 items-center">
                 <Text>Зарплата</Text>
