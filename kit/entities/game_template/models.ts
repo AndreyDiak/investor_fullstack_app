@@ -1,9 +1,9 @@
-import { GameTemplate } from "./types";
+import { GameTemplate } from "./types"
 
 export const gameTemplates: GameTemplate[] = [
   {
     job: {
-      name: "Waiter",
+      name: "Официант",
       startSalary: 45_500,
       type: "waiter",
     },
@@ -70,4 +70,4 @@ export const gameTemplates: GameTemplate[] = [
       },
     ],
   },
-];
+]
