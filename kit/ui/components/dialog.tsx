@@ -207,6 +207,21 @@ export const DialogHeading = (props: Partial<HeadingProps>) => {
   return <Heading level={2} {...props} />;
 };
 
+export const DialogBody = forwardRef<HTMLDivElement, BoxProps>(
+  (props, ref) => {
+    return (
+      <Box
+        ref={ref}
+        css={{
+          padding: "24px",
+          width: "100%",
+        }}
+        {...props}
+      />
+    );
+  },
+);
+
 function getDialogSizeStyles(size: DialogSize): Theme {
   switch (size) {
     case "small":
