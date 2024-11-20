@@ -31,7 +31,7 @@ export const CreateGameDialog = () => {
     <Fragment>
       <DialogHeader className="bg-[var(--aqua-light)]">
         <DialogHeading className="text-white font-semibold font-main">
-          <Text>Создать новую игру</Text>
+          Создать новую игру
         </DialogHeading>
       </DialogHeader>
       <DialogBody className="flex gap-4 py-4 bg-[var(--aqua)]">
@@ -42,8 +42,8 @@ export const CreateGameDialog = () => {
                 src={`/jobs/${template.job.type}.jpeg`}
                 className="overflow-hidden rounded-md object-cover"
               />
-              <Box className="flex justify-between gap-8 items-center">
-                <Text>Зарплата</Text>
+              <Box className="flex justify-between gap-8 items-center text-2xl">
+                Зарплата
                 <MoneyDisplay
                   className="text-white font-semibold"
                   count={template.job.startSalary}
