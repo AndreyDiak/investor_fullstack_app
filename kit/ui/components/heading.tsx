@@ -27,18 +27,18 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
 const levelToStyles: Record<Level, Theme> = {
   1: {
     fontSize: "36px",
-    letterSpacing: "40px",
+    lineHeight: "40px",
   },
   2: {
     fontSize: "24px",
-    letterSpacing: "32px",
+    lineHeight: "32px",
   },
   3: {
     fontSize: "20px",
-    letterSpacing: "28px",
+    lineHeight: "28px",
   },
   4: {
     fontSize: "18px",
-    letterSpacing: "28px",
+    lineHeight: "28px",
   },
 };
