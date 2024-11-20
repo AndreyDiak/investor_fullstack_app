@@ -1,3 +1,4 @@
+import { Theme } from "@emotion/react";
 import {
   FloatingFocusManager,
   FloatingOverlay,
@@ -12,7 +13,6 @@ import {
 import {
   cloneElement,
   createContext,
-  CSSProperties,
   forwardRef,
   HTMLProps,
   ReactElement,
@@ -21,7 +21,6 @@ import {
   useMemo,
   useState,
 } from "react";
-import { cn } from "./../utils";
 import { Box, BoxProps } from "./box";
 import { Heading, HeadingProps } from "./heading";
 
@@ -76,7 +75,7 @@ function useDialog({
       placement,
       size,
     }),
-    [open, setOpen, interactions, data, size, placement]
+    [open, setOpen, interactions, data, size, placement],
   );
 }
 
@@ -121,15 +120,15 @@ export const DialogTrigger = forwardRef<HTMLElement, DialogTriggerProps>(
         ...props,
         ...children.props,
         "data-state": context.open ? "open" : "closed",
-      })
+      }),
     );
-  }
+  },
 );
 
 export const DialogContent = forwardRef<
   HTMLDialogElement,
   HTMLProps<HTMLDialogElement>
->(({ className, children, ...rest }, propRef) => {
+>(({ children, ...rest }, propRef) => {
   const {
     context: floatingContext,
     size,
@@ -138,8 +137,8 @@ export const DialogContent = forwardRef<
   } = useDialogContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
-  const sizeCn = getDialogSizeCn(size);
-  const placementCn = getDialogPlacementCn(placement);
+  const sizeStyles = getDialogSizeStyles(size);
+  const placementStyles = getDialogPlacementStyles(placement);
 
   if (!floatingContext.open) {
     return null;
@@ -157,16 +156,23 @@ export const DialogContent = forwardRef<
         <FloatingFocusManager context={floatingContext}>
           <dialog
             ref={ref}
-            className={cn(
-              "bg-white rounded-xl flex flex-col items-center justify-stretch overflow-auto border-none outline-none active:border-none active:outline-none max-h-[80vh]",
-              sizeCn,
-              className
-            )}
-            {...context.getFloatingProps(rest)}
-            style={{
-              // ...sizeCn,
-              ...placementCn,
+            css={{
+              ...sizeStyles,
+              ...placementStyles,
+              backgroundColor: "#fff",
+              borderRadius: "12px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "stretch",
+              border: "none",
+              outline: "none",
+              maxHeight: "80vh",
+              ":active": {
+                border: "none",
+                outline: "none",
+              },
             }}
+            {...context.getFloatingProps(rest)}
           >
             {children}
           </dialog>
@@ -177,59 +183,56 @@ export const DialogContent = forwardRef<
 });
 
 export const DialogHeader = forwardRef<HTMLDivElement, BoxProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
       <Box
         ref={ref}
-        className={cn(
-          "px-6 py-2 flex gap-10 w-full items-start rounded-tl-2",
-          className
-        )}
+        css={{
+          padding: "8px 24px",
+          display: "flex",
+          gap: "40px",
+          width: "100%",
+          alignItems: "start",
+          borderTopLeftRadius: "8px",
+        }}
         {...props}
       >
         {children}
       </Box>
     );
-  }
+  },
 );
 
-export const DialogHeading = ({
-  className,
-  ...rest
-}: Partial<HeadingProps>) => {
-  return <Heading className={cn(className)} level={2} {...rest} />;
+export const DialogHeading = (props: Partial<HeadingProps>) => {
+  return <Heading level={2} {...props} />;
 };
 
-export const DialogBody = forwardRef<HTMLDivElement, BoxProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <Box
-        ref={ref}
-        className={cn("p-6 overflow-auto w-full", className)}
-        {...props}
-      >
-        {children}
-      </Box>
-    );
-  }
-);
-
-function getDialogSizeCn(size: DialogSize): string {
+function getDialogSizeStyles(size: DialogSize): Theme {
   switch (size) {
     case "small":
-      return "w-[420px]";
+      return {
+        width: "420px",
+      };
     case "medium":
-      return "w-1/2";
+      return {
+        width: "50%",
+      };
     case "large":
-      return "w-3/4";
+      return {
+        width: "75%",
+      };
     case "screen":
-      return "w-11/12";
+      return {
+        width: "91.5%",
+      };
     default:
-      return "w-[420px]";
+      return {
+        width: "420px",
+      };
   }
 }
 
-function getDialogPlacementCn(placement: DialogPlacement): CSSProperties {
+function getDialogPlacementStyles(placement: DialogPlacement): Theme {
   switch (placement) {
     case "top":
       return {

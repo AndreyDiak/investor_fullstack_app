@@ -6,10 +6,11 @@ import {
   useState,
 } from "react";
 import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
-import { cn } from "./../utils";
+import { Box } from "./box";
 
 interface Props<T extends FieldValues>
-  extends Omit<DOMAttributes<HTMLFormElement>, "onSubmit">,
+  extends
+    Omit<DOMAttributes<HTMLFormElement>, "onSubmit">,
     Omit<HTMLAttributes<HTMLFormElement>, "onSubmit"> {
   form: UseFormReturn<T>;
   onSubmit: (data: T) => Promise<void>;
@@ -34,7 +35,7 @@ export const Form = <T extends FieldValues>({
         setLoading(false);
       }
     }),
-    [formHandleSubmit]
+    [formHandleSubmit],
   );
 
   return (
@@ -56,9 +57,15 @@ export const CustomFormContext = createContext<{ loading: boolean }>({
   loading: false,
 });
 
-export const FormGrid = ({
-  className,
-  ...rest
-}: HTMLAttributes<HTMLDivElement>) => {
-  return <div {...rest} className={cn("flex flex-col gap-2", className)} />;
+export const FormGrid = (props: HTMLAttributes<HTMLDivElement>) => {
+  return (
+    <Box
+      css={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+      }}
+      {...props}
+    />
+  );
 };

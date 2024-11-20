@@ -11,7 +11,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "jsxImportSource": "@emotion/react"
   },
   "include": ["ui/**/*"],
   "exclude": ["node_modules", "dist"]
