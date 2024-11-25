@@ -5,9 +5,9 @@ export function beatifyPrice(price: number): string {
   return String(price)
     .split("")
     .reverse()
-    .reduce((acc, curr, i) => {
+    .reduce((acc, curr, i, arr) => {
       acc += curr;
-      if ((i + 1) % 3 === 0) {
+      if ((i + 1) % 3 === 0 && i !== arr.length - 1) {
         acc += ".";
       }
       return acc;

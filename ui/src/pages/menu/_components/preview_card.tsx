@@ -3,13 +3,13 @@ import {
   BaseButton,
   Box,
   BoxProps,
-  cn,
   DialogContent,
   DialogTrigger,
   DialogWrapper,
 } from "@kit/ui";
 import { forwardRef } from "react";
 import { Game } from "../../../entities/game/types";
+import { Text } from "./../../../shared/ui/text";
 import { CreateGameDialog } from "./_create_game_dialog";
 
 export const MenuPreviewCard = ({ game }: { game?: Game }) => {
@@ -17,16 +17,33 @@ export const MenuPreviewCard = ({ game }: { game?: Game }) => {
     return (
       <DialogWrapper placement="top" size="large">
         <DialogTrigger>
-          <CardWrapper className="hover:bg-teal-700 hover:border-teal-700">
-            <BaseButton className="flex flex-col items-center">
+          <CardWrapper
+            css={{
+              backgroundColor: "var(--color-aqua)",
+              border: "2px solid var(--color-aqua-dark)",
+              ":hover": {
+                background: "var(--color-aqua-light)",
+                borderColor: "var(--color-aqua)",
+              },
+            }}
+          >
+            <BaseButton
+              css={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <Plus width={30} height={30} color="#fff" />
-              <span className="text-2xl font-semibold font-main text-white">
+              <Text
+                css={{ fontSize: "1.5rem", lineHeight: "2rem", color: "#fff" }}
+              >
                 Новая игра
-              </span>
+              </Text>
             </BaseButton>
           </CardWrapper>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent css={{ width: "1200px" }}>
           <CreateGameDialog />
         </DialogContent>
       </DialogWrapper>
@@ -36,19 +53,25 @@ export const MenuPreviewCard = ({ game }: { game?: Game }) => {
   return <CardWrapper>some info...</CardWrapper>;
 };
 
-const CardWrapper = forwardRef<HTMLDivElement, BoxProps>(
-  ({ className, ...rest }, ref) => {
-    return (
-      <Box
-        ref={ref}
-        className={cn(
-          className,
-          `border-emerald-900 border-2 rounded-2xl pt-8 px-6 pb-4 
-          flex justify-center w-[450px] h-[600px] items-center bg-teal-600 
-          cursor-pointer duration-300 hover:scale-105 ease-in-out`,
-        )}
-        {...rest}
-      />
-    );
-  },
-);
+const CardWrapper = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
+  return (
+    <Box
+      ref={ref}
+      css={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "450px",
+        height: "600px",
+        cursor: "pointer",
+        borderRadius: "1rem",
+        transitionDuration: "400ms",
+        transitionTimingFunction: "ease-in-out",
+        ":hover": {
+          scale: "1.05",
+        },
+      }}
+      {...props}
+    />
+  );
+});

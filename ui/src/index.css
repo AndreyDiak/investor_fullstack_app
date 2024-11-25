@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 :root {
-	--aqua: #006064;
-	--aqua-light: #006b6e;
+  --color-aqua: #006064;
+  --color-aqua-light: #006b6e;
+  --color-aqua-dark: #064e3b;
+  --color-success: rgb(46, 125, 50);
+  --color-warning: rgb(249, 168, 37);
+  --color-danger: rgb(191, 54, 12);
+  --text-secondary: lightgray;
 }

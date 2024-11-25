@@ -36,8 +36,26 @@ export const MenuPage = () => {
   }
 
   return (
-    <Box className="w-full h-screen flex items-center justify-center bg-[url(/public/menu.jpeg)] bg-cover">
-      <Box className="flex items-center justify-center gap-24">
+    <Box
+      css={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundImage: "url(/public/menu.jpeg)",
+        backgroundSize: "cover",
+      }}
+      // className="w-full h-screen flex items-center justify-center bg-[url(/public/menu.jpeg)] bg-cover"
+    >
+      <Box
+        css={{
+          display: "flex",
+          alignItems: "center",
+          justifyItems: "center",
+          gap: "2.5rem",
+        }}
+      >
         {previewGames.map((previewGame, index) => (
           <MenuPreviewCard key={index} game={previewGame} />
         ))}

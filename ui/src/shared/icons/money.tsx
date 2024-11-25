@@ -1,4 +1,3 @@
-import { cn } from "@kit/ui";
 import { HTMLAttributes } from "react";
 import iconSrc1 from "../../assets/money/1.png";
 import iconSrc2 from "../../assets/money/2.png";
@@ -10,19 +9,8 @@ interface MoneyIconProps extends HTMLAttributes<HTMLImageElement> {
   variant?: MoneyIconVariant;
 }
 
-export const MoneyIcon = ({
-  className,
-  variant = 1,
-  ...rest
-}: MoneyIconProps) => {
-  return (
-    <img
-      src={variantToSrcMap[variant]}
-      className={cn("", className)}
-      alt="money"
-      {...rest}
-    />
-  );
+export const MoneyIcon = ({ variant = 1, ...rest }: MoneyIconProps) => {
+  return <img src={variantToSrcMap[variant]} alt="money" {...rest} />;
 };
 
 const variantToSrcMap: Record<MoneyIconVariant, string> = {

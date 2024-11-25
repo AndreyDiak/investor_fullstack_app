@@ -1,4 +1,3 @@
-import { cn } from "@kit/ui";
 import { CSSProperties, HTMLAttributes } from "react";
 
 type TextFontFamily = "roboto";
@@ -10,21 +9,16 @@ interface TextProps extends HTMLAttributes<HTMLSpanElement> {
 
 export const Text = ({
   children,
-  className,
   fontFamily = "roboto",
   ...rest
 }: TextProps) => {
   return (
-    <span
-      className={cn("", className)}
-      style={{ fontFamily: fontToStyleMap[fontFamily] }}
-      {...rest}
-    >
+    <span css={{ fontFamily: fontToCss[fontFamily] }} {...rest}>
       {children}
     </span>
   );
 };
 
-const fontToStyleMap: Record<TextFontFamily, CSSProperties["fontFamily"]> = {
+const fontToCss: Record<TextFontFamily, CSSProperties["fontFamily"]> = {
   roboto: "Roboto Mono",
 };

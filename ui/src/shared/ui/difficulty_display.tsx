@@ -1,4 +1,4 @@
-import { Box, BoxProps, cn } from "@kit/ui";
+import { Box, BoxProps } from "@kit/ui";
 import { forwardRef } from "react";
 
 export type Difficulty = "easy" | "normal" | "hard";
@@ -10,12 +10,15 @@ interface DifficultyDisplayProps extends BoxProps {
 export const DifficultyDisplay = forwardRef<
   HTMLDivElement,
   DifficultyDisplayProps
->(({ difficulty, className, ...rest }, ref) => {
+>(({ difficulty, ...rest }, ref) => {
   return (
     <Box
       ref={ref}
-      className={cn(`py-1 px-3 font-semibold rounded-lg text-white`, className)}
-      style={{
+      css={{
+        padding: "0.25rem 0.75rem",
+        fontWeight: "600",
+        borderRadius: "0.5rem",
+        color: "#fff",
         backgroundColor: difficultyToColorMap[difficulty],
       }}
       {...rest}
@@ -31,8 +34,8 @@ const difficultyToLabelMap: Record<Difficulty, string> = {
   hard: "Сложно",
 };
 
-const difficultyToColorMap: Record<Difficulty, string> = {
-  easy: "rgb(46, 125, 50)",
-  normal: "rgb(249, 168, 37)",
-  hard: "rgb(191, 54, 12)",
+export const difficultyToColorMap: Record<Difficulty, string> = {
+  easy: "var(--color-success)",
+  normal: "var(--color-warning)",
+  hard: "var(--color-danger)",
 };
