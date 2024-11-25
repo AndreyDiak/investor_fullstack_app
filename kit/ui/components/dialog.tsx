@@ -75,7 +75,7 @@ function useDialog({
       placement,
       size,
     }),
-    [open, setOpen, interactions, data, size, placement],
+    [open, setOpen, interactions, data, size, placement]
   );
 }
 
@@ -120,9 +120,9 @@ export const DialogTrigger = forwardRef<HTMLElement, DialogTriggerProps>(
         ...props,
         ...children.props,
         "data-state": context.open ? "open" : "closed",
-      }),
+      })
     );
-  },
+  }
 );
 
 export const DialogContent = forwardRef<
@@ -183,7 +183,7 @@ export const DialogContent = forwardRef<
 });
 
 export const DialogHeader = forwardRef<HTMLDivElement, BoxProps>(
-  ({ children, ...props }, ref) => {
+  (props, ref) => {
     return (
       <Box
         ref={ref}
@@ -196,31 +196,27 @@ export const DialogHeader = forwardRef<HTMLDivElement, BoxProps>(
           borderTopLeftRadius: "8px",
         }}
         {...props}
-      >
-        {children}
-      </Box>
+      />
     );
-  },
+  }
 );
 
 export const DialogHeading = (props: Partial<HeadingProps>) => {
   return <Heading level={2} {...props} />;
 };
 
-export const DialogBody = forwardRef<HTMLDivElement, BoxProps>(
-  (props, ref) => {
-    return (
-      <Box
-        ref={ref}
-        css={{
-          padding: "24px",
-          width: "100%",
-        }}
-        {...props}
-      />
-    );
-  },
-);
+export const DialogBody = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
+  return (
+    <Box
+      ref={ref}
+      css={{
+        padding: "24px",
+        width: "100%",
+      }}
+      {...props}
+    />
+  );
+});
 
 function getDialogSizeStyles(size: DialogSize): Theme {
   switch (size) {
