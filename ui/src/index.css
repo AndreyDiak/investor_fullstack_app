@@ -6,8 +6,10 @@
   --color-aqua: #006064;
   --color-aqua-light: #006b6e;
   --color-aqua-dark: #064e3b;
+  --color-aqua-darken: #055d60;
   --color-success: rgb(46, 125, 50);
   --color-warning: rgb(249, 168, 37);
   --color-danger: rgb(191, 54, 12);
-  --text-secondary: lightgray;
+  --text-secondary: #e0e0e0;
+  --color-aqua-text: #88b3af;
 }

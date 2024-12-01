@@ -11,6 +11,7 @@ export function useStoreFetch<T extends (...args: any[]) => Promise<any>>(
   options?: UseStoreFetchOptions
 ) {
   const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [data, setData] = useState<Awaited<ReturnType<T>>>();
   const [error, setError] = useState<Error>();
 
@@ -23,6 +24,7 @@ export function useStoreFetch<T extends (...args: any[]) => Promise<any>>(
       const [error, json] = await catchError<Awaited<ReturnType<T>>, any>(
         callback(...args)
       );
+      setLoaded(true);
       setLoading(false);
       if (error) {
         setError(error);
@@ -36,5 +38,5 @@ export function useStoreFetch<T extends (...args: any[]) => Promise<any>>(
     [callback, onSuccess, onError]
   );
 
-  return { data, loading, error, fetch: modified as T };
+  return { data, loading, error, loaded, fetch: modified as T };
 }

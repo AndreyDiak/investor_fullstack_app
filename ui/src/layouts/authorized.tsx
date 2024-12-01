@@ -1,24 +1,25 @@
-import { Fragment, useCallback, useEffect } from "react"
-import { Outlet, useNavigate } from "react-router-dom"
-import { api } from "../api"
-import { catchError } from "../shared/lib/catchError"
+import { Fragment, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../api/auth";
+import { useStoreFetch } from "../shared/hooks";
 
 export const AuthorizedLayout = () => {
   const navigate = useNavigate();
 
-  const fetchUser = api.auth.getState().me;
-  const check = useCallback(async () => {
-    const [error, user] = await catchError(fetchUser());
-    if (error || !user) {
-      navigate("/auth");
-    }
-  }, []);
+  const {
+    data: user,
+    fetch: fetchUser,
+    loaded,
+  } = useStoreFetch(useAuthStore.getState().me);
 
   useEffect(() => {
-    check();
+    fetchUser();
   }, []);
 
-  
+  if (loaded && !user) {
+    navigate("/auth");
+  }
+
   return (
     <Fragment>
       <Outlet />
