@@ -97,7 +97,6 @@ export const DialogWrapper = ({
   ...options
 }: UseDialogProps & { children: ReactNode }) => {
   const dialog = useDialog(options);
-
   return (
     <DialogContext.Provider value={dialog}>{children}</DialogContext.Provider>
   );
