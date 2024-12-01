@@ -8,16 +8,21 @@ import {
   DialogWrapper,
 } from "@kit/ui";
 import { forwardRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Game } from "../../../entities/game/types";
 import { Text } from "./../../../shared/ui/text";
 import { CreateGameDialog } from "./_create_game_dialog";
 
 export const MenuPreviewCard = ({ game }: { game?: Game }) => {
+  const navigate = useNavigate();
   if (!game) {
     return (
       <DialogWrapper placement="top" size="large">
         <DialogTrigger>
           <CardWrapper
+            onClick={() => {
+              navigate("/new");
+            }}
             css={{
               backgroundColor: "var(--color-aqua)",
               border: "2px solid var(--color-aqua-dark)",

@@ -46,7 +46,6 @@ export const MenuPage = () => {
         backgroundImage: "url(/public/menu.jpeg)",
         backgroundSize: "cover",
       }}
-      // className="w-full h-screen flex items-center justify-center bg-[url(/public/menu.jpeg)] bg-cover"
     >
       <Box
         css={{
