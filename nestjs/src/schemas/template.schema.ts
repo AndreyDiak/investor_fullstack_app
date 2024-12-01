@@ -18,6 +18,12 @@ class Job {
 
   @Prop()
   type: JobVariant;
+
+  @Prop()
+  savings: number;
+
+  @Prop()
+  imgUrl: string;
 }
 
 const TemplateJob = SchemaFactory.createForClass(Job);

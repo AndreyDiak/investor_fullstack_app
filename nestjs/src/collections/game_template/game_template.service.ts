@@ -1,8 +1,9 @@
-import { gameTemplates } from '@kit/entities';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Template } from 'src/schemas/template.schema';
+
+import { templates as gameTemplates } from '../../../../assets/templates.json';
 
 @Injectable()
 export class GameTemplateService {
