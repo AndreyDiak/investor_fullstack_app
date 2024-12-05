@@ -136,8 +136,8 @@ export const DialogContent = forwardRef<
   } = useDialogContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
-  const sizeStyles = getDialogSizeStyles(size);
-  const placementStyles = getDialogPlacementStyles(placement);
+  const sizeStyles = sizeToStyles[size];
+  const placementStyles = placementToStyles[placement];
 
   if (!floatingContext.open) {
     return null;
@@ -217,40 +217,26 @@ export const DialogBody = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   );
 });
 
-function getDialogSizeStyles(size: DialogSize): Theme {
-  switch (size) {
-    case "small":
-      return {
-        width: "420px",
-      };
-    case "medium":
-      return {
-        width: "50%",
-      };
-    case "large":
-      return {
-        width: "75%",
-      };
-    case "screen":
-      return {
-        width: "91.5%",
-      };
-    default:
-      return {
-        width: "420px",
-      };
-  }
-}
+const sizeToStyles: Record<DialogSize, Theme> = {
+  small: {
+    width: "420px",
+  },
+  medium: {
+    width: "50%",
+  },
+  large: {
+    width: "75%",
+  },
+  screen: {
+    width: "91.5%",
+  },
+};
 
-function getDialogPlacementStyles(placement: DialogPlacement): Theme {
-  switch (placement) {
-    case "top":
-      return {
-        marginTop: "10vh",
-      };
-    case "bottom":
-      return {
-        bottom: 24,
-      };
-  }
-}
+const placementToStyles: Record<DialogPlacement, Theme> = {
+  top: {
+    marginTop: "10vh",
+  },
+  bottom: {
+    bottom: 24,
+  },
+};
