@@ -11,5 +11,6 @@
   --color-warning: rgb(249, 168, 37);
   --color-danger: rgb(191, 54, 12);
   --text-secondary: #e0e0e0;
+  --text-secondary-darken: rgba(57, 57, 57, 0.52);
   --color-aqua-text: #88b3af;
 }
