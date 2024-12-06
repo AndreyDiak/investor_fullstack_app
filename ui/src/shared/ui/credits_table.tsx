@@ -1,60 +1,65 @@
 import { TemplateCredit } from "@kit/entities";
-import { Box, BoxProps } from "@kit/ui";
+import { Box, BoxProps, Table } from "@kit/ui";
+import { MoneyDisplay } from "./money_display";
 
 interface Props extends BoxProps {
   credits: TemplateCredit[];
 }
-// TODO: add table component to kit
 export const CreditsTable = ({ credits, ...rest }: Props) => {
   return (
-    <Box
+    <Table
+      data={credits}
+      columns={[
+        {
+          title: "Предмет",
+          render: (credit) => credit.name,
+        },
+        {
+          title: "Количество",
+          render: (credit) => (
+            <MoneyDisplay
+              count={credit.payment}
+              css={{
+                fontWeight: "600",
+              }}
+            />
+          ),
+        },
+        {
+          title: "Разовая выплата (мес.)",
+          render: (credit) => (
+            <MoneyDisplay
+              count={credit.payment}
+              css={{
+                fontWeight: "600",
+              }}
+            />
+          ),
+        },
+        {
+          title: "Выплачено",
+          render: (credit) => (
+            <MoneyDisplay
+              count={credit.repaidAmount}
+              css={{
+                fontWeight: "600",
+              }}
+            />
+          ),
+        },
+        {
+          title: "Осталось выплачивать (мес.)",
+          render: (credit) => (
+            <Box css={{ fontWeight: "600" }}>
+              {(credit.amount - credit.repaidAmount) / credit.payment}
+            </Box>
+          ),
+        },
+      ]}
       css={{
-        "--table-width": "inherit",
-        "--head-text-align": "left",
-        "--cell-x-padding": "0.5rem",
-        "--cell-y-padding": "0.25rem",
+        "--cell-content-align": "right",
       }}
       {...rest}
-    >
-      <table
-        // @ts-ignore
-        css={{
-          width: "var(--table-width)",
-          borderCollapse: "collapse",
-          borderSpacing: 0,
-          tableLayout: "fixed",
-          th: {
-            padding: "var(--cell-y-padding) var(--cell-x-padding)",
-            textAlign: "var(--head-text-align)",
-            fontFamily: "Roboto",
-            fontWeight: "400",
-            color: "var(--text-secondary-darken)",
-          },
-          td: {
-            padding: "var(--cell-y-padding) var(--cell-x-padding)",
-          },
-        }}
-      >
-        <thead>
-          <tr>
-            <th>Название</th>
-            <th>Количество</th>
-            <th>Выплата в мес.</th>
-            <th>Выплачено</th>
-          </tr>
-        </thead>
-        <tbody>
-          {credits.map((credit) => (
-            <tr key={credit.name}>
-              <td>{credit.name}</td>
-              <td>{credit.amount}</td>
-              <td>{credit.payment}</td>
-              <td>{credit.repaidAmount}</td>
-            </tr>
-          ))}
-        </tbody>
-        {rest.children}
-      </table>
-    </Box>
+    />
   );
 };

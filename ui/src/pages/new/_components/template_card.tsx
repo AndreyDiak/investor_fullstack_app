@@ -114,10 +114,10 @@ const SavingsListDisplay = ({
             {label}
           </Text>
           <MoneyDisplay
-            className="text-white font-semibold"
             count={value}
             variant={2}
             css={{
+              color: "#fff",
               fontWeight: "600",
             }}
           />

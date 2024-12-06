@@ -32,7 +32,12 @@ export const TemplatePreviewDialog = ({
             />
           </Box>
           <Box>
-            <CreditsTable credits={template.credits} />
+            <CreditsTable
+              credits={template.credits}
+              css={{
+                "--cell-content-align": "right",
+              }}
+            />
           </Box>
         </Box>
         <Box css={{ display: "flex", width: "100%", justifyContent: "center" }}>

@@ -9,7 +9,7 @@ interface MoneyIconProps extends HTMLAttributes<HTMLImageElement> {
   variant?: MoneyIconVariant;
 }
 
-export const MoneyIcon = ({ variant = 1, ...rest }: MoneyIconProps) => {
+export const MoneyIcon = ({ variant = 2, ...rest }: MoneyIconProps) => {
   return <img src={variantToSrcMap[variant]} alt="money" {...rest} />;
 };
 
