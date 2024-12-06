@@ -1,4 +1,4 @@
-import { CustomFormContext, cn } from "@kit/ui";
+import { BaseButton, CustomFormContext } from "@kit/ui";
 import { ButtonHTMLAttributes, HTMLAttributes, useContext } from "react";
 import { useFormContext } from "react-hook-form";
 import { ScaleLoader } from "react-spinners";
@@ -7,7 +7,7 @@ interface Props
   extends HTMLAttributes<HTMLButtonElement>,
     ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export const AuthButton = ({ className, children, ...rest }: Props) => {
+export const AuthButton = ({ children, ...rest }: Props) => {
   const {
     formState: { isValid, isLoading },
   } = useFormContext();
@@ -15,16 +15,25 @@ export const AuthButton = ({ className, children, ...rest }: Props) => {
 
   const disabled = !isValid || isLoading || loading;
   return (
-    <button
+    <BaseButton
       disabled={disabled}
       type="submit"
-      className={cn(
-        disabled
-          ? "bg-green-300"
-          : "bg-green-500 cursor-pointer hover:bg-green-900",
-        "text-white font-bold rounded-full text-md h-12 font-sans duration-300 flex items-center gap-4 justify-center w-full",
-        className
-      )}
+      css={{
+        color: "#fff",
+        padding: "0.75rem 0",
+        fontWeight: "700",
+        borderRadius: "3rem",
+        fontFamily: "Roboto",
+        transitionDuration: "300ms",
+        display: "flex",
+        gap: "1rem",
+        backgroundColor: disabled ? "rgb(134 239 172)" : "rgb(34 197 94)",
+        justifyContent: "center",
+        width: "100%",
+        ":hover": {
+          backgroundColor: disabled ? "rgb(134 239 172)" : "rgb(20 83 45)",
+        },
+      }}
       {...rest}
     >
       {loading ? (
@@ -32,6 +41,6 @@ export const AuthButton = ({ className, children, ...rest }: Props) => {
       ) : (
         children
       )}
-    </button>
+    </BaseButton>
   );
 };

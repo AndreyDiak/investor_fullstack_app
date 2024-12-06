@@ -51,7 +51,7 @@ export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const handleSubmit = async (data: FormProps) => {
     if (data.password !== data?.repeatPassword) {
       setError("repeatPassword", {
-        message: "Password mismatch",
+        message: "Пароли не совпадают",
       });
       return;
     }
@@ -66,14 +66,20 @@ export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
         await handleSubmit(data);
         onSuccess?.();
       }}
-      className="flex flex-col gap-2"
+      css={{
+        display: "flex",
+        flexDirection: "column",
+      }}
     >
-      <FormGrid className="mb-12">
-        <motion.span className="flex flex-col gap-2" {...styles}>
+      <FormGrid css={{ marginBottom: "3rem" }}>
+        <motion.span
+          css={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+          {...styles}
+        >
           <AuthInput
             Icon={Envelope}
             type="text"
-            placeholder="Email"
+            placeholder="Эл. Почта"
             {...register("email", {
               required: true,
             })}
@@ -81,7 +87,7 @@ export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
           <AuthInput
             Icon={Person}
             type="text"
-            placeholder="Username"
+            placeholder="Имя пользователя"
             {...register("username", {
               required: true,
             })}
@@ -90,7 +96,7 @@ export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
         <AuthInput
           Icon={Lock}
           type="password"
-          placeholder="Password"
+          placeholder="Пароль"
           {...register("password", {
             required: true,
           })}
@@ -98,14 +104,14 @@ export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
         <AuthInput
           Icon={Lock}
           type="password"
-          placeholder="Repeat password"
+          placeholder="Подтвердить пароль"
           {...register("repeatPassword", {
             required: true,
           })}
         />
         <HttpError error={httpError} />
       </FormGrid>
-      <AuthButton>SIGN UP</AuthButton>
+      <AuthButton>Создать аккаунт</AuthButton>
     </Form>
   );
 };

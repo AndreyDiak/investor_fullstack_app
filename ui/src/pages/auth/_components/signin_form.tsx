@@ -23,11 +23,11 @@ export const SignInForm = ({ onSuccess }: { onSuccess?: () => void }) => {
 
   return (
     <Form form={form} onSubmit={handleSignIn}>
-      <FormGrid className="mb-12">
+      <FormGrid css={{ marginBottom: "3rem" }}>
         <AuthInput
           Icon={Person}
           type="text"
-          placeholder="Username"
+          placeholder="Имя пользователя"
           {...register("username", {
             required: true,
           })}
@@ -35,14 +35,14 @@ export const SignInForm = ({ onSuccess }: { onSuccess?: () => void }) => {
         <AuthInput
           Icon={Lock}
           type="password"
-          placeholder="Password"
+          placeholder="Пароль"
           {...register("password", {
             required: true,
           })}
         />
         <HttpError error={httpError} />
       </FormGrid>
-      <AuthButton>LOG IN</AuthButton>
+      <AuthButton>Войти</AuthButton>
     </Form>
   );
 };

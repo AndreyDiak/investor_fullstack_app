@@ -1,7 +1,9 @@
+import { BaseButton, Box } from "@kit/ui";
 import { motion, useCycle } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Heading } from "../../../../kit/ui/components/heading";
 import { SignInForm } from "./_components/signin_form";
 import { SignUpForm } from "./_components/signup_form";
 
@@ -13,27 +15,76 @@ export const AuthPage = () => {
   const [touched, setTouched] = useState(false);
 
   return (
-    <div className="bg-gradient-to-tr from-indigo-500 from-10% to-emerald-500 to-70% w-full h-screen flex items-center justify-center">
-      <div
-        className={`bg-white rounded-3xl px-32 pb-8 flex justify-between items-end min-w-[840px] h-[550px] font-main ${
-          mode === "signin" ? "pt-40" : "pt-16"
-        }`}
+    <Box
+      css={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      className="bg-gradient-to-tr from-indigo-500 from-10% to-emerald-500 to-70%"
+    >
+      <Box
+        css={{
+          background: "#fff",
+          borderRadius: "1.5rem",
+          padding: "0 8rem 2rem 8rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+          minWidth: "840px",
+          height: "540px",
+          fontFamily: "Roboto",
+          paddingTop: mode === "signin" ? "10rem" : "4rem",
+        }}
       >
-        <div className="mr-24 mb-14">
-          <h2 className="text-3xl text-gray-700 font-semibold ml-8">
-            <span className="text-emerald-600">#</span>Investor
-          </h2>
-          <img src="public/preview.png" alt={""} className="w-60" />
-        </div>
-        <div>
-          <motion.h2 className="font-bold text-gray-700 text-2xl mb-8">
-            {mode === "signin" ? "Member Login" : "Member Sign up"}
+        <Box
+          css={{
+            marginRight: "6rem",
+            marginBottom: "3.5rem",
+          }}
+        >
+          <Heading
+            level={1}
+            css={{
+              color: "rgb(55, 65, 81)",
+              fontWeight: "600",
+              marginLeft: "2rem",
+            }}
+          >
+            <span css={{ color: "var(--text-emerald)" }}>#</span>
+            Инвестор
+          </Heading>
+          <img src="public/preview.png" alt={""} css={{ width: "16rem" }} />
+        </Box>
+        <Box
+          css={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "3rem",
+          }}
+        >
+          <motion.h2
+            css={{
+              fontWeight: "700",
+              fontSize: "1.5rem",
+              lineHeight: "2rem",
+              color: "rgb(55,65,81)",
+            }}
+          >
+            {mode === "signin" ? "Войдите в аккаунт" : "Создайте аккаунт"}
           </motion.h2>
           <motion.div
             initial={{ opacity: 0.4, scale: 0.6, x: 250 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.5, ease: "backOut" }}
-            className={`flex flex-col items-center mb-14 gap-14`}
+            css={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "3rem",
+            }}
           >
             {
               {
@@ -49,7 +100,7 @@ export const AuthPage = () => {
                     onSuccess={() => {
                       toggleMode();
                       toast(
-                        "You successfully create an acccout, please log in",
+                        "Вы успешно зарегистрировались, теперь можете войти в свою учетную запись",
                         { type: "success" }
                       );
                     }}
@@ -58,23 +109,31 @@ export const AuthPage = () => {
               }[mode]
             }
           </motion.div>
-          <div className="font-light text-gray-500 text-sm cursor-pointer hover:text-gray-900 text-center">
-            <button
-              className="underline"
-              onClick={() => {
-                toggleMode();
-                if (!touched) {
-                  setTouched(true);
-                }
-              }}
-            >
-              {mode === "signin"
-                ? "Create an account"
-                : "Already have an account?"}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+          <BaseButton
+            onClick={() => {
+              toggleMode();
+              if (!touched) {
+                setTouched(true);
+              }
+            }}
+            css={{
+              fontWeight: "300",
+              color: "rgb(107 114 128)",
+              fontSize: "0.875rem",
+              lineHeight: "1.25rem",
+              textDecoration: "underline",
+              alignSelf: "center",
+              ":hover": {
+                color: "rgb(17 24 39)",
+              },
+            }}
+          >
+            {mode === "signin"
+              ? "Создать учетную запись"
+              : "Уже есть учетная запись?"}
+          </BaseButton>
+        </Box>
+      </Box>
+    </Box>
   );
 };

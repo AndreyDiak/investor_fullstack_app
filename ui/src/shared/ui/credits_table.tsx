@@ -37,7 +37,7 @@ export const CreditsTable = ({ credits, ...rest }: Props) => {
       >
         <thead>
           <tr>
-            <th>Имя</th>
+            <th>Название</th>
             <th>Количество</th>
             <th>Выплата в мес.</th>
             <th>Выплачено</th>

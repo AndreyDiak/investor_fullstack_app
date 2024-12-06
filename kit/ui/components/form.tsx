@@ -9,8 +9,7 @@ import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
 import { Box } from "./box";
 
 interface Props<T extends FieldValues>
-  extends
-    Omit<DOMAttributes<HTMLFormElement>, "onSubmit">,
+  extends Omit<DOMAttributes<HTMLFormElement>, "onSubmit">,
     Omit<HTMLAttributes<HTMLFormElement>, "onSubmit"> {
   form: UseFormReturn<T>;
   onSubmit: (data: T) => Promise<void>;
@@ -35,7 +34,7 @@ export const Form = <T extends FieldValues>({
         setLoading(false);
       }
     }),
-    [formHandleSubmit],
+    [formHandleSubmit]
   );
 
   return (
@@ -63,7 +62,7 @@ export const FormGrid = (props: HTMLAttributes<HTMLDivElement>) => {
       css={{
         display: "flex",
         flexDirection: "column",
-        gap: "8px",
+        gap: "0.5rem",
       }}
       {...props}
     />

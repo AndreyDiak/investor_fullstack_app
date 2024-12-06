@@ -1,3 +1,4 @@
+import { Box } from "@kit/ui";
 import {
   forwardRef,
   HTMLAttributes,
@@ -14,25 +15,49 @@ interface Props
 export const AuthInput = forwardRef<HTMLDivElement, Props>(
   ({ Icon, ...rest }, ref) => {
     return (
-      <div
-        className="bg-gray-200 flex items-center rounded-full relative"
+      <Box
         ref={ref}
+        css={{
+          backgroundColor: "rgb(229 231 235)",
+          display: "flex",
+          alignItems: "center",
+          borderRadius: "3rem",
+          position: "relative",
+        }}
       >
         <input
-          className="bg-transparent rounded-full peer focus:border-none focus:outline-none font-[Roboto] font-semibold 
-				text-[#666666] pr-8 pl-16 h-12"
+          css={{
+            padding: "0.75rem 2rem 0.75rem 4rem",
+            backgroundColor: "transparent",
+            color: "rgb(102, 102, 102)",
+            borderRadius: "3rem",
+            fontWeight: "600",
+            ":focus": {
+              border: "none",
+              outline: "none",
+              "~ .auth-icon": {
+                color: "var(--text-emerald)",
+                transform: "translateX(-0.5rem)",
+              },
+            },
+          }}
           {...rest}
         />
         {Icon && (
           <Icon
             width={18}
             height={18}
-            className="absolute left-6 text-gray-700 peer-focus:text-emerald-600 transition duration-500 peer-focus:-translate-x-2 ease-in-out"
+            className="auth-icon"
+            css={{
+              position: "absolute",
+              left: "1.5rem",
+              transitionDuration: "300ms",
+              transitionTimingFunction: "ease-in-out",
+              color: "rgb(55, 65, 81)",
+            }}
           />
         )}
-      </div>
+      </Box>
     );
   }
 );
-
-const I: HTMLAttributes<HTMLInputElement> = {};
