@@ -43,8 +43,8 @@ export const MenuPage = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundImage: "url(/public/menu.jpeg)",
-        backgroundSize: "cover",
+        background:
+          "linear-gradient(to top right, var(--color-indigo) 30%, var(--color-emerald) 70%)",
       }}
     >
       <Box

@@ -7,7 +7,6 @@ import {
   DialogTrigger,
   DialogWrapper,
 } from "@kit/ui";
-import { forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Game } from "../../../entities/game/types";
 import { Text } from "./../../../shared/ui/text";
@@ -24,12 +23,9 @@ export const MenuPreviewCard = ({ game }: { game?: Game }) => {
               navigate("/new");
             }}
             css={{
-              backgroundColor: "var(--color-aqua)",
-              border: "2px solid var(--color-aqua-dark)",
-              ":hover": {
-                background: "var(--color-aqua-light)",
-                borderColor: "var(--color-aqua)",
-              },
+              backgroundColor: "transparent",
+              border: "2px solid white",
+              boxShadow: "0 0 100px rgba(0, 0, 0, 0.2)",
             }}
           >
             <BaseButton
@@ -58,10 +54,9 @@ export const MenuPreviewCard = ({ game }: { game?: Game }) => {
   return <CardWrapper>some info...</CardWrapper>;
 };
 
-const CardWrapper = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
+const CardWrapper = (props: BoxProps) => {
   return (
     <Box
-      ref={ref}
       css={{
         display: "flex",
         justifyContent: "center",
@@ -79,4 +74,4 @@ const CardWrapper = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
       {...props}
     />
   );
-});
+};

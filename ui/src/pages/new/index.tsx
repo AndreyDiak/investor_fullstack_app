@@ -32,10 +32,8 @@ export const NewGamePage = () => {
       css={{
         width: "100%",
         height: "100vh",
-        background: `
-          linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
-          url(/public/menu.jpeg)
-        `,
+        background:
+          "linear-gradient(to top right, var(--color-indigo) 30%, var(--color-emerald) 70%)",
         backgroundSize: "cover",
         display: "flex",
         justifyContent: "center",

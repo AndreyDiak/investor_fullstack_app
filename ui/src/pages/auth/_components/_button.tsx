@@ -14,6 +14,7 @@ export const AuthButton = ({ children, ...rest }: Props) => {
   const { loading } = useContext(CustomFormContext);
 
   const disabled = !isValid || isLoading || loading;
+  console.log({ disabled, isLoading, isValid, loading });
   return (
     <BaseButton
       disabled={disabled}

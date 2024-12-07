@@ -4,11 +4,14 @@
 
 :root {
   /* aqua */
-  --color-aqua: #006064;
-  --color-aqua-light: #006b6e;
+  --color-aqua: #0a6b6f;
+  --color-aqua-light: #307f81;
   --color-aqua-lighten: #359194;
   --color-aqua-dark: #064e3b;
   --color-aqua-darken: #055d60;
+
+  --color-indigo: #6366f1;
+  --color-emerald: #10b981;
 
   --color-success: rgb(46, 125, 50);
   --color-warning: rgb(249, 168, 37);

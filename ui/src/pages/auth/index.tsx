@@ -22,8 +22,9 @@ export const AuthPage = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        background:
+          "linear-gradient(to top right, var(--color-indigo) 10%, var(--color-emerald) 70%)",
       }}
-      className="bg-gradient-to-tr from-indigo-500 from-10% to-emerald-500 to-70%"
     >
       <Box
         css={{
