@@ -1,21 +1,13 @@
 import { Theme } from "@emotion/react";
-import { ButtonHTMLAttributes, forwardRef, HTMLAttributes } from "react";
+import { ButtonHTMLAttributes, HTMLAttributes, memo } from "react";
 
 export interface BaseButtonProps
   extends HTMLAttributes<HTMLButtonElement>,
     ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export const BaseButton = forwardRef<HTMLButtonElement, BaseButtonProps>(
-  (props, ref) => {
-    return (
-      <button
-        ref={ref}
-        css={{ cursor: "pointer", outline: "none" }}
-        {...props}
-      />
-    );
-  }
-);
+export const BaseButton = memo((props: BaseButtonProps) => {
+  return <button css={{ cursor: "pointer", outline: "none" }} {...props} />;
+});
 
 type ButtonSize = "small" | "medium" | "large";
 type ButtonVariant = "primary" | "secondary" | "danger";
@@ -25,8 +17,8 @@ export interface ButtonProps extends BaseButtonProps {
   variant?: ButtonVariant;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ size = "medium", variant = "primary", ...rest }, ref) => {
+export const Button = memo(
+  ({ size = "medium", variant = "primary", ...rest }: ButtonProps) => {
     return (
       <BaseButton
         css={{
@@ -42,7 +34,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           },
         }}
         {...rest}
-        ref={ref}
       />
     );
   }

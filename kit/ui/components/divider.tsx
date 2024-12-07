@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Box, BoxProps } from "./box";
 
-export const Divider = ({ color, ...rest }: BoxProps) => (
+export const Divider = memo(({ color, ...rest }: BoxProps) => (
   <Box
     css={{
       width: "100%",
@@ -10,4 +11,4 @@ export const Divider = ({ color, ...rest }: BoxProps) => (
     }}
     {...rest}
   />
-);
+));

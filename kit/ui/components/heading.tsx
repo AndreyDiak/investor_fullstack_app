@@ -1,30 +1,29 @@
 import { Theme } from "@emotion/react";
-import { forwardRef, HTMLAttributes } from "react";
+import { HTMLAttributes, Ref } from "react";
 
-type Level = 1 | 2 | 3 | 4;
+type HeadingLevel = 1 | 2 | 3 | 4;
+
 export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
-  level: Level;
+  level: HeadingLevel;
+  ref?: Ref<HTMLHeadingElement>;
 }
 
-export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ level, ...rest }, ref) => {
-    const HTMLTag = `h${level}` as const;
-    return (
-      <HTMLTag
-        ref={ref}
-        css={{
-          color: "#393939",
-          margin: 0,
-          padding: 0,
-          ...levelToStyles[level],
-        }}
-        {...rest}
-      />
-    );
-  },
-);
+export const Heading = ({ level, ...rest }: HeadingProps) => {
+  const HTMLTag = `h${level}` as const;
+  return (
+    <HTMLTag
+      css={{
+        ...levelToStyles[level],
+        color: "#393939",
+        margin: 0,
+        padding: 0,
+      }}
+      {...rest}
+    />
+  );
+};
 
-const levelToStyles: Record<Level, Theme> = {
+const levelToStyles: Record<HeadingLevel, Theme> = {
   1: {
     fontSize: "36px",
     lineHeight: "40px",

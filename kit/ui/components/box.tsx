@@ -1,9 +1,9 @@
-import { forwardRef, HTMLAttributes } from "react";
+import { HTMLAttributes, Ref } from "react";
 
-export interface BoxProps extends HTMLAttributes<HTMLDivElement> {}
+export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: Ref<HTMLDivElement>;
+}
 
-export const Box = forwardRef<HTMLDivElement, BoxProps>(
-  (props, ref) => {
-    return <div ref={ref} {...props} />;
-  },
-);
+export const Box = (props: BoxProps) => {
+  return <div {...props} />;
+};

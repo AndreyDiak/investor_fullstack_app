@@ -13,10 +13,10 @@ import {
 import {
   cloneElement,
   createContext,
-  forwardRef,
   HTMLProps,
   ReactElement,
   ReactNode,
+  Ref,
   useContext,
   useMemo,
   useState,
@@ -104,30 +104,38 @@ export const DialogWrapper = ({
 
 interface DialogTriggerProps extends Omit<HTMLProps<HTMLElement>, "children"> {
   children: ReactElement<any>;
+  ref?: Ref<HTMLElement>;
 }
 
-export const DialogTrigger = forwardRef<HTMLElement, DialogTriggerProps>(
-  ({ children, ...props }, propRef) => {
-    const context = useDialogContext();
-    const childrenRef = (children as any).ref;
-    const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
+export const DialogTrigger = ({
+  children,
+  ref: propRef,
+  ...props
+}: DialogTriggerProps) => {
+  const context = useDialogContext();
+  const childrenRef = (children as any).ref;
+  const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
 
-    return cloneElement(
-      children,
-      context.getReferenceProps({
-        ref,
-        ...props,
-        ...children.props,
-        "data-state": context.open ? "open" : "closed",
-      })
-    );
-  }
-);
+  return cloneElement(
+    children,
+    context.getReferenceProps({
+      ref,
+      ...props,
+      ...children.props,
+      "data-state": context.open ? "open" : "closed",
+    })
+  );
+};
 
-export const DialogContent = forwardRef<
-  HTMLDialogElement,
-  HTMLProps<HTMLDialogElement>
->(({ children, ...rest }, propRef) => {
+interface DialogContentProps extends HTMLProps<HTMLDialogElement> {
+  ref?: Ref<HTMLDialogElement>;
+}
+
+export const DialogContent = ({
+  children,
+  ref: propRef,
+  ...rest
+}: DialogContentProps) => {
   const {
     context: floatingContext,
     size,
@@ -179,35 +187,31 @@ export const DialogContent = forwardRef<
       </FloatingOverlay>
     </FloatingPortal>
   );
-});
+};
 
-export const DialogHeader = forwardRef<HTMLDivElement, BoxProps>(
-  (props, ref) => {
-    return (
-      <Box
-        ref={ref}
-        css={{
-          padding: "8px 24px",
-          display: "flex",
-          gap: "40px",
-          width: "100%",
-          alignItems: "start",
-          borderTopLeftRadius: "8px",
-        }}
-        {...props}
-      />
-    );
-  }
-);
+export const DialogHeader = (props: BoxProps) => {
+  return (
+    <Box
+      css={{
+        padding: "8px 24px",
+        display: "flex",
+        gap: "40px",
+        width: "100%",
+        alignItems: "start",
+        borderTopLeftRadius: "8px",
+      }}
+      {...props}
+    />
+  );
+};
 
 export const DialogHeading = (props: Partial<HeadingProps>) => {
   return <Heading level={2} {...props} />;
 };
 
-export const DialogBody = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
+export const DialogBody = (props: BoxProps) => {
   return (
     <Box
-      ref={ref}
       css={{
         padding: "24px",
         width: "100%",
@@ -215,7 +219,7 @@ export const DialogBody = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
       {...props}
     />
   );
-});
+};
 
 const sizeToStyles: Record<DialogSize, Theme> = {
   small: {
