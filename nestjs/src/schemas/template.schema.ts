@@ -2,7 +2,7 @@ import {
   JobVariant,
   TemplateCredit,
   TemplateDifficulty,
-  TemplateJob,
+  // TemplateJob,
   TemplateProperty,
 } from '@kit/entities';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';

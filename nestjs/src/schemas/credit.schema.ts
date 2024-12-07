@@ -19,6 +19,9 @@ export class Credit {
 
   @Prop()
   payment: number;
+
+  @Prop()
+  imgUrl: string | undefined;
 }
 
 export const CreditSchema = SchemaFactory.createForClass(Credit);
