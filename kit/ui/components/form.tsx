@@ -2,7 +2,6 @@ import {
   createContext,
   DOMAttributes,
   HTMLAttributes,
-  memo,
   useCallback,
   useState,
 } from "react";
@@ -16,35 +15,38 @@ interface Props<T extends FieldValues>
   onSubmit: (data: T) => Promise<void>;
 }
 
-export const Form = memo(
-  ({ onSubmit, children, form, ...rest }: Props<unknown>) => {
-    const { handleSubmit: formHandleSubmit } = form;
+export const Form = <T extends FieldValues>({
+  onSubmit,
+  children,
+  form,
+  ...rest
+}: Props<T>) => {
+  const { handleSubmit: formHandleSubmit } = form;
 
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    const handleSubmit = useCallback(
-      formHandleSubmit(async (data) => {
-        setLoading(true);
-        try {
-          await onSubmit(data);
-        } finally {
-          setLoading(false);
-        }
-      }),
-      [formHandleSubmit]
-    );
+  const handleSubmit = useCallback(
+    formHandleSubmit(async (data) => {
+      setLoading(true);
+      try {
+        await onSubmit(data);
+      } finally {
+        setLoading(false);
+      }
+    }),
+    [formHandleSubmit]
+  );
 
-    return (
-      <CustomFormContext.Provider value={{ loading }}>
-        <FormProvider {...form}>
-          <form onSubmit={handleSubmit} {...rest}>
-            {children}
-          </form>
-        </FormProvider>
-      </CustomFormContext.Provider>
-    );
-  }
-);
+  return (
+    <CustomFormContext.Provider value={{ loading }}>
+      <FormProvider {...form}>
+        <form onSubmit={handleSubmit} {...rest}>
+          {children}
+        </form>
+      </FormProvider>
+    </CustomFormContext.Provider>
+  );
+};
 
 export const CustomFormContext = createContext<{ loading: boolean }>({
   loading: false,
