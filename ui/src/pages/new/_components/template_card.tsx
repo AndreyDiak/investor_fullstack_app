@@ -35,14 +35,15 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
             border: "2px solid white",
             display: "flex",
             flexDirection: "column",
-            background: "var(--color-aqua)",
+            // background: "var(--color-aqua)",
+            backdropFilter: "hue-rotate(45deg)",
             gap: "0.5rem",
             cursor: "pointer",
             transitionDuration: "300ms",
             transitionTimingFunction: "ease-in",
             ":hover": {
               scale: 1.05,
-              background: "var(--color-aqua-darken)",
+              // background: "var(--color-aqua-darken)",
             },
           }}
         >
@@ -72,7 +73,7 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
             </Text>
             <DifficultyDisplay difficulty={template.difficulty} />
           </Box>
-          <Divider color="var(--color-aqua-light)" />
+          <Divider color="var(--text-secondary)" />
           <SavingsListDisplay
             items={[
               { label: "Зарплата", value: template.job.startSalary },
@@ -80,7 +81,7 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
               { label: "Имущество", value: propertiesSummary },
             ]}
           />
-          <Divider color="var(--color-aqua-light)" />
+          <Divider color="var(--text-secondary)" />
           <SavingsListDisplay
             items={[{ label: "Кредиты", value: creditsSummaryPayment }]}
           />
@@ -110,7 +111,7 @@ const SavingsListDisplay = ({
             gap: "0.5rem",
           }}
         >
-          <Text css={{ color: "var(--color-aqua-text)", fontWeight: "500" }}>
+          <Text css={{ color: "var(--text-secondary)", fontWeight: "500" }}>
             {label}
           </Text>
           <MoneyDisplay

@@ -10,7 +10,11 @@ export const TemplatePreviewDialog = ({
 }) => {
   return (
     <Fragment>
-      <DialogHeader>
+      <DialogHeader
+        css={{
+          backgroundColor: "rgba(53, 145, 148, 0.1)",
+        }}
+      >
         <DialogHeading>{template.job.name}</DialogHeading>
       </DialogHeader>
       <DialogBody>

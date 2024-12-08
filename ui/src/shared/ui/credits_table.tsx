@@ -11,7 +11,7 @@ export const CreditsTable = ({ credits, ...rest }: Props) => {
       data={credits}
       columns={[
         {
-          title: "Предмет",
+          title: "Цель",
           render: (credit) => (
             <Box>
               {credit.imgUrl ? (
@@ -26,9 +26,10 @@ export const CreditsTable = ({ credits, ...rest }: Props) => {
               )}
             </Box>
           ),
+          width: 60,
         },
         {
-          title: "Количество",
+          title: "Сумма",
           render: (credit) => (
             <MoneyDisplay
               count={credit.amount}
@@ -72,7 +73,8 @@ export const CreditsTable = ({ credits, ...rest }: Props) => {
         },
       ]}
       css={{
-        "--cell-content-align": "right",
+        "--head-text-align": "center",
+        "--cell-content-align": "center",
       }}
       {...rest}
     />
