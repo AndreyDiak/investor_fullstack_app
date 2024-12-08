@@ -35,6 +35,9 @@ export const Table = <D extends unknown>({
           borderCollapse: "collapse",
           borderSpacing: 0,
           tableLayout: "fixed",
+          "tbody tr:hover": {
+            backgroundColor: "rgba(53, 145, 148, 0.05)",
+          },
         }}
       >
         <thead>
@@ -108,5 +111,12 @@ const TableCell = ({
 };
 
 const TableRow = (props: HTMLAttributes<HTMLTableRowElement>) => {
-  return <tr css={{ position: "relative" }} {...props} />;
+  return (
+    <tr
+      css={{
+        position: "relative",
+      }}
+      {...props}
+    />
+  );
 };
