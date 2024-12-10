@@ -35,8 +35,8 @@ export const TemplateCard = ({ template }: TemplateCardProps) => {
             border: "2px solid white",
             display: "flex",
             flexDirection: "column",
-            // background: "var(--color-aqua)",
-            backdropFilter: "hue-rotate(45deg)",
+            background:
+              "linear-gradient(to top, var(--color-indigo) 10%, var(--color-emerald) 50%)",
             gap: "0.5rem",
             cursor: "pointer",
             transitionDuration: "300ms",

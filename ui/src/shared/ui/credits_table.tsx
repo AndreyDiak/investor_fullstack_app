@@ -1,5 +1,12 @@
 import { TemplateCredit } from "@kit/entities";
-import { Box, BoxProps, Table } from "@kit/ui";
+import {
+  Box,
+  BoxProps,
+  Table,
+  TooltipContent,
+  TooltipTrigger,
+  TooltipWrapper,
+} from "@kit/ui";
 import { MoneyDisplay } from "./money_display";
 
 interface Props extends BoxProps {
@@ -15,39 +22,42 @@ export const CreditsTable = ({ credits, ...rest }: Props) => {
           render: (credit) => (
             <Box>
               {credit.imgUrl ? (
-                <img
-                  src={credit.imgUrl}
-                  alt={credit.name}
-                  width={32}
-                  height={32}
-                />
+                <TooltipWrapper>
+                  <TooltipTrigger>
+                    <img
+                      src={credit.imgUrl}
+                      alt={credit.name}
+                      width={32}
+                      height={32}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent
+                    css={{
+                      backgroundColor: "var(--text-emerald)",
+                      color: "white",
+                      fontWeight: "500",
+                    }}
+                  >
+                    <Box>{credit.name}</Box>
+                  </TooltipContent>
+                </TooltipWrapper>
               ) : (
                 credit.name
               )}
             </Box>
           ),
-          width: 60,
+          width: 80,
         },
         {
           title: "Сумма",
           render: (credit) => (
-            <MoneyDisplay
-              count={credit.amount}
-              css={{
-                fontWeight: "600",
-              }}
-            />
+            <MoneyDisplay count={credit.amount} css={moneyDisplayStyles} />
           ),
         },
         {
           title: "Разовая выплата (мес.)",
           render: (credit) => (
-            <MoneyDisplay
-              count={credit.payment}
-              css={{
-                fontWeight: "600",
-              }}
-            />
+            <MoneyDisplay count={credit.payment} css={moneyDisplayStyles} />
           ),
         },
         {
@@ -55,14 +65,12 @@ export const CreditsTable = ({ credits, ...rest }: Props) => {
           render: (credit) => (
             <MoneyDisplay
               count={credit.repaidAmount}
-              css={{
-                fontWeight: "600",
-              }}
+              css={moneyDisplayStyles}
             />
           ),
         },
         {
-          title: "Осталось выплачивать (мес.)",
+          title: "Мес. до выплаты",
           render: (credit) => (
             <Box css={{ fontWeight: "600" }}>
               {Math.ceil(
@@ -73,10 +81,15 @@ export const CreditsTable = ({ credits, ...rest }: Props) => {
         },
       ]}
       css={{
-        "--head-text-align": "center",
-        "--cell-content-align": "center",
+        "--head-text-align": "right",
+        "--cell-text-align": "right",
       }}
       {...rest}
     />
   );
+};
+
+const moneyDisplayStyles = {
+  fontWeight: "500",
+  fontSize: "16px",
 };

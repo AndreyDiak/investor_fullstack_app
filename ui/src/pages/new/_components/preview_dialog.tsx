@@ -1,5 +1,5 @@
 import { GameTemplate } from "@kit/entities";
-import { Box, Button, DialogBody, DialogHeader, DialogHeading } from "@kit/ui";
+import { Box, DialogBody, DialogHeader, DialogHeading } from "@kit/ui";
 import { Fragment } from "react";
 import { CreditsTable } from "../../../shared/ui/credits_table";
 
@@ -10,11 +10,7 @@ export const TemplatePreviewDialog = ({
 }) => {
   return (
     <Fragment>
-      <DialogHeader
-        css={{
-          backgroundColor: "rgba(53, 145, 148, 0.1)",
-        }}
-      >
+      <DialogHeader css={{ backgroundColor: "rgba(53, 145, 148, 0.1)" }}>
         <DialogHeading>{template.job.name}</DialogHeading>
       </DialogHeader>
       <DialogBody>
@@ -35,19 +31,17 @@ export const TemplatePreviewDialog = ({
               }}
             />
           </Box>
-          <Box>
-            <CreditsTable
-              credits={template.credits}
-              css={{
-                "--cell-content-align": "right",
-              }}
-            />
-          </Box>
+          <CreditsTable
+            credits={template.credits}
+            css={{
+              "--cell-content-align": "right",
+            }}
+          />
         </Box>
         <Box css={{ display: "flex", width: "100%", justifyContent: "center" }}>
-          <Button variant="primary" css={{ margin: "0 auto" }}>
+          {/* <Button variant="primary" css={{ margin: "0 auto" }}>
             Начать игру
-          </Button>
+          </Button> */}
         </Box>
       </DialogBody>
     </Fragment>
