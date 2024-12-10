@@ -25,7 +25,7 @@
 					"payment": 10000,
 					"repaidAmount": 0,
 					"imgUrl": "https://storage.yandexcloud.net/investor-app-bucket/credit_card.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEqSufkl0m2V73qSHIhDqg%2F20241207%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20241207T214917Z&X-Amz-Expires=2592000&X-Amz-Signature=6125C6C0E87801F13F1AF1461BE9AA59A043C78A8579DDA4F24BB811A1BB3CC8&X-Amz-SignedHeaders=host"
-				}
+				} 
 			],
 			"properties": [
 				{
@@ -38,7 +38,7 @@
 		{
 			"job": {
 				"name": "Таксист",
-				"startSalary": 60000,
+				"startSalary": 95000,
 				"savings": 45000,
 				"type": "taxi",
 				"imgUrl": "https://storage.yandexcloud.net/investor-app-bucket/taxi.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEqSufkl0m2V73qSHIhDqg%2F20241201%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20241201T131140Z&X-Amz-Expires=2592000&X-Amz-Signature=55D84085B9EEF7C03CC89DAE32235FB5927832D564D819BD4BF870CF5BF6079D&X-Amz-SignedHeaders=host"
@@ -52,9 +52,23 @@
 					"payment": 25000,
 					"repaidAmount": 0,
 					"imgUrl": "https://storage.yandexcloud.net/investor-app-bucket/credit_card.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEqSufkl0m2V73qSHIhDqg%2F20241207%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20241207T214917Z&X-Amz-Expires=2592000&X-Amz-Signature=6125C6C0E87801F13F1AF1461BE9AA59A043C78A8579DDA4F24BB811A1BB3CC8&X-Amz-SignedHeaders=host"
+				},
+				{
+					"name": "Ипотека",
+					"type": "mortgage",
+					"amount": 6000000,
+					"payment": 60000,
+          "repaidAmount": 0,
+					"imgUrl": "https://storage.yandexcloud.net/investor-app-bucket/flat.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEqSufkl0m2V73qSHIhDqg%2F20241210%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20241210T231228Z&X-Amz-Expires=2592000&X-Amz-Signature=0FFE42DCD99DC83D72D21C2A0A5D005809BD8DABAFDD4CEF6BA472924C0C7CF1&X-Amz-SignedHeaders=host"
 				}
 			],
-			"properties": []
+			"properties": [
+				{
+					"name": "Квартира",
+          "price": 5500000,
+          "type": "flat"
+				}
+			]
 		},
 		{
 			"job": {
