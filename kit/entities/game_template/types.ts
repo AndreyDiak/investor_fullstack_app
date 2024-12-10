@@ -9,8 +9,8 @@ export interface GameTemplate {
 export type TemplateDifficulty = "easy" | "normal" | "hard";
 
 export type JobVariant = "waiter" | "courier" | "storekeeper" | "taxi";
-export type PropertyVariant = "jewelery" | "car" | "apartment";
-export type CreditVariant = "card" | "study";
+export type PropertyVariant = "jewelery" | "car" | "flat";
+export type CreditVariant = "card" | "study" | "mortgage" | "casinoDebt";
 
 export interface TemplateJob {
   name: string;
