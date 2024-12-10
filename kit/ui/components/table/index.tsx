@@ -24,7 +24,7 @@ export const Table = <D extends unknown>({
         "--head-text-align": "left",
         "--cell-x-padding": "0.75rem",
         "--cell-y-padding": "0.25rem",
-        "--cell-content-align": "left",
+        "--cell-text-align": "left",
       }}
       {...rest}
     >
@@ -101,7 +101,7 @@ const TableCell = ({
         css={{
           width: "inherit",
           display: "flex",
-          justifyContent: "var(--cell-content-align)",
+          justifyContent: "var(--cell-text-align)",
         }}
       >
         {children}
