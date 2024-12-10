@@ -14,7 +14,7 @@
 					"name": "Учеба",
 					"type": "study",
 					"amount": 250000,
-					"payment": 15000,
+					"payment": 12500,
 					"repaidAmount": 0,
 					"imgUrl": "https://storage.yandexcloud.net/investor-app-bucket/study.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEqSufkl0m2V73qSHIhDqg%2F20241207%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20241207T220507Z&X-Amz-Expires=2592000&X-Amz-Signature=EFAB975332F9E0C90CEB9B97410B1DA0B3FBAF5C32D691198EE80B404EBF4CEB&X-Amz-SignedHeaders=host"
 				},
@@ -22,7 +22,7 @@
 					"name": "Кредитная карта",
 					"type": "card",
 					"amount": 100000,
-					"payment": 10500,
+					"payment": 10000,
 					"repaidAmount": 0,
 					"imgUrl": "https://storage.yandexcloud.net/investor-app-bucket/credit_card.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEqSufkl0m2V73qSHIhDqg%2F20241207%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20241207T214917Z&X-Amz-Expires=2592000&X-Amz-Signature=6125C6C0E87801F13F1AF1461BE9AA59A043C78A8579DDA4F24BB811A1BB3CC8&X-Amz-SignedHeaders=host"
 				}
