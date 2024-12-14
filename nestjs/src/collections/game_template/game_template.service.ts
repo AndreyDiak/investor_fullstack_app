@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Template } from 'src/schemas/template.schema';
 
-import { templates as gameTemplates } from '../../../../assets/templates.json';
+import gameTemplates from '../../../../assets/templates.json';
 
 @Injectable()
 export class GameTemplateService {

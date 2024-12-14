@@ -1,4 +1,4 @@
-import { companies } from '@kit/entities';
+import { CompanyTag } from '@kit/entities';
 import {
   generateStockInitialCount,
   generateStockInitialPrice,
@@ -7,6 +7,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Stock } from 'src/schemas/stock.schema';
+import companies from '../../../../assets/companies.json';
 
 @Injectable()
 export class StockService {
@@ -14,17 +15,17 @@ export class StockService {
 
   async init() {
     const stocks: Stock[] = companies.map((company) => {
-      const [type, companyName, description, tags] = company;
-      const name = `${type} ${companyName}`;
+      const { type, name, description, tags } = company;
+      const fullName = `${type} ${name}`;
       const price = generateStockInitialPrice();
       const count = generateStockInitialCount();
 
       return {
-        name,
+        name: fullName,
         description,
         price,
         count,
-        tags: Array.from(tags),
+        tags: Array.from(tags) as CompanyTag[],
       };
     });
 
