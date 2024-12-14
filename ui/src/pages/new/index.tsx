@@ -1,8 +1,9 @@
-import { Box } from "@kit/ui";
+import { Box, DialogContent, DialogTrigger, DialogWrapper } from "@kit/ui";
 import { useEffect } from "react";
 import { useTemplateStore } from "../../api/template";
 import { useStoreFetch } from "../../shared/hooks";
-import { TemplateCard } from "./_components/template_card";
+import { TemplateCard } from "../../shared/ui/template_card";
+import { TemplatePreviewDialog } from "./_components/preview_dialog";
 
 export const NewGamePage = () => {
   const {
@@ -41,9 +42,16 @@ export const NewGamePage = () => {
         gap: "32px",
       }}
     >
-      {templates?.map((template) => {
-        return <TemplateCard key={template.job.name} template={template} />;
-      })}
+      {templates?.map((template) => (
+        <DialogWrapper placement="top" size="large">
+          <DialogTrigger css={{ display: "flex", flexDirection: "column" }}>
+            <TemplateCard key={template.job.name} template={template} />
+          </DialogTrigger>
+          <DialogContent>
+            <TemplatePreviewDialog template={template} />
+          </DialogContent>
+        </DialogWrapper>
+      ))}
     </Box>
   );
 };
