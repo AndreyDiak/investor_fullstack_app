@@ -2,16 +2,18 @@ import {
   createContext,
   DOMAttributes,
   HTMLAttributes,
+  Ref,
   useCallback,
   useState,
 } from "react";
 import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
-import { Box, BoxProps } from "./box";
+import { Box, BoxProps } from "../box";
 
 interface Props<T extends FieldValues>
   extends Omit<DOMAttributes<HTMLFormElement>, "onSubmit">,
     Omit<HTMLAttributes<HTMLFormElement>, "onSubmit"> {
   form: UseFormReturn<T>;
+  ref?: Ref<HTMLFormElement>;
   onSubmit: (data: T) => Promise<void>;
 }
 

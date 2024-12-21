@@ -1,7 +1,7 @@
-import { CompanyTag } from "./../tag/types";
+import { CompanyTag, CompanyType } from "./../tag/types";
 
 export interface Company {
-  type: string;
+  type: CompanyType;
   name: string;
   description: string;
   tags: CompanyTag[];

@@ -6,3 +6,5 @@ export const companyTags = [
   "production",
   "consulting",
 ] as const;
+
+export const companyType = ["ОАО", "ИП", "ЗАО", "ООО"] as const;
