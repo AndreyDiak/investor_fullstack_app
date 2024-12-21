@@ -22,6 +22,7 @@ const assetToForm: Record<string, ReactNode> = {
 
 export const AssetDisplay = ({ items, type }: Props) => {
   const [mode, setMode] = useState<"edit" | "view">("view");
+
   return (
     <Box
       css={{

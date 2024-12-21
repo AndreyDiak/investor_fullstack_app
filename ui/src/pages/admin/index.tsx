@@ -21,7 +21,6 @@ const assets = ["companies", "templates"] as const;
 
 export const AdminPage = () => {
   const [active, setActive] = useState<Asset | undefined>();
-  const [mode, setMode] = useState<Mode>("edit");
 
   return (
     <Box
@@ -32,7 +31,6 @@ export const AdminPage = () => {
         gridTemplateColumns: "1fr 3fr",
         background:
           "linear-gradient(to top right, var(--color-indigo) 10%, var(--color-emerald) 70%)",
-        // backgroundColor: "#52525b",
       }}
     >
       <Box
