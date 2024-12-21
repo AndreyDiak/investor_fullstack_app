@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AssetsModule } from './collections/assets/assets.module';
 import { AuthModule } from './collections/auth/auth.module';
 import { CreditModule } from './collections/credit/credit.module';
 import { GameModule } from './collections/game/game.module';
@@ -24,6 +25,7 @@ import { UserModule } from './collections/user/user.module';
     GameTemplateModule,
     JobModule,
     CreditModule,
+    AssetsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
