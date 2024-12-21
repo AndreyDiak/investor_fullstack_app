@@ -1,9 +1,9 @@
 import { Company, companyTags, GameTemplate } from "@kit/entities";
 import {
-  Button,
   Form,
   FormField,
   FormGrid,
+  FormSubmitButton,
   Option,
   Select,
   TextInput,
@@ -14,7 +14,6 @@ import { AssetType, useAssetsStore } from "../../../api/assets";
 
 export const CompanyForm = () => {
   const form = useForm<Company>();
-  const { register } = form;
   const addAsset = useAssetsStore((state) => state.add);
 
   const handleSubmit = useCallback(async (values: Company) => {
@@ -41,8 +40,7 @@ export const CompanyForm = () => {
             ))}
           </Select>
         </FormField>
-        <Button type="submit">Сохранить</Button>
-        {/* <button type="submit">Сохранить</button> */}
+        <FormSubmitButton>Сохранить</FormSubmitButton>
       </FormGrid>
     </Form>
   );
