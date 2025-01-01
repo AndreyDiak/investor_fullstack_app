@@ -4,7 +4,7 @@
 
 # Prepare the image when build
 # also use to minimize the docker image
-FROM node:20.9.0-alpine as builder
+FROM node:latest as builder
 
 WORKDIR /app
 COPY package*.json ./
@@ -14,7 +14,7 @@ RUN npm run build
 
 # Build the image as production
 # So we can minimize the size
-FROM node:20.9.0-alpine
+FROM node:latest
 
 WORKDIR /app
 COPY package*.json ./
