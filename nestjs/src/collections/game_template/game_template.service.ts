@@ -3,8 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Template } from 'src/schemas/template.schema';
 
-import gameTemplates from '../../../../assets/templates.json';
-
 @Injectable()
 export class GameTemplateService {
   constructor(
@@ -16,7 +14,7 @@ export class GameTemplateService {
     if (templates.length !== 0) {
       return templates;
     }
-    return await this.templateModel.create(gameTemplates);
+    return await this.templateModel.create(templates);
   }
 
   async removeAll() {
