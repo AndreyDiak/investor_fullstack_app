@@ -1,3 +1,4 @@
 dev:
-	docker compose -f .docker-compose.yaml up -d --remove-orphans
-	cd ui && npm run docker-dev
+	# docker compose -f .docker-compose.yaml up -d --remove-orphans
+	cd nestjs && npm run dev
+	cd ui && npm run dev
