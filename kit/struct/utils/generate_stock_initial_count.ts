@@ -1,4 +1,4 @@
-export function generateStockInitialCount() {
+export function generateStockInitialCount(): number {
   const range = MAX_STOCK_COUNT - MIN_STOCK_COUNT;
   return Math.round(Math.random() * range + MIN_STOCK_COUNT);
 }

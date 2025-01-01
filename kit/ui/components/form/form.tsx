@@ -1,6 +1,8 @@
 import {
+  Context,
   createContext,
   DOMAttributes,
+  FC,
   HTMLAttributes,
   Ref,
   useCallback,
@@ -9,20 +11,20 @@ import {
 import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
 import { Box, BoxProps } from "../box";
 
-interface Props<T extends FieldValues>
+interface FormProps<T extends FieldValues>
   extends Omit<DOMAttributes<HTMLFormElement>, "onSubmit">,
     Omit<HTMLAttributes<HTMLFormElement>, "onSubmit"> {
   form: UseFormReturn<T>;
   ref?: Ref<HTMLFormElement>;
-  onSubmit: (data: T) => Promise<void>;
+  onSubmit: (data: T) => Promise<void> | void;
 }
 
-export const Form = <T extends FieldValues>({
+export const Form: FC<FormProps<FieldValues>> = ({
   onSubmit,
   children,
   form,
   ...rest
-}: Props<T>) => {
+}) => {
   const { handleSubmit: formHandleSubmit } = form;
 
   const [loading, setLoading] = useState(false);
@@ -50,11 +52,13 @@ export const Form = <T extends FieldValues>({
   );
 };
 
-export const CustomFormContext = createContext<{ loading: boolean }>({
+export const CustomFormContext: Context<{
+  loading: boolean;
+}> = createContext({
   loading: false,
 });
 
-export const FormGrid = (props: BoxProps) => {
+export const FormGrid: FC<BoxProps> = (props) => {
   return (
     <Box
       css={{

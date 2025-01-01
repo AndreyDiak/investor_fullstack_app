@@ -1,4 +1,4 @@
-export function generateStockInitialPrice() {
+export function generateStockInitialPrice(): number {
   const rand = Math.random() * 100;
 
   const index = (() => {

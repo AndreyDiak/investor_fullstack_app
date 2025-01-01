@@ -1,5 +1,7 @@
 import {
   cloneElement,
+  CSSProperties,
+  FC,
   isValidElement,
   LabelHTMLAttributes,
   ReactElement,
@@ -10,19 +12,21 @@ import {
 import { useFormContext } from "react-hook-form";
 import { Box } from "../box";
 
-interface FormFieldContext {
-  name: string;
+interface FormFieldProps {
+  fieldId: string;
   required?: boolean;
-  title?: string;
+  label?: string;
+  direction?: CSSProperties["flexDirection"];
   children: ReactElement;
 }
 
-export const FormField = ({
-  name,
-  title,
+export const FormField: FC<FormFieldProps> = ({
+  fieldId,
+  label,
+  direction = "column",
   required = false,
   children,
-}: FormFieldContext) => {
+}) => {
   const { register } = useFormContext();
 
   const ref = useRef();
@@ -31,33 +35,35 @@ export const FormField = ({
     if (isValidElement(children)) {
       return cloneElement(children, {
         ref,
-        ...register(name, { required }),
+        ...register(fieldId, { required }),
       });
     }
     throw new Error("FormField children must be a valid React element");
-  }, [children, ref, name, required]);
+  }, [children, ref, fieldId, required]);
 
   return (
     <Box
       css={{
         display: "flex",
-        flexDirection: "column",
+        flexDirection: direction,
         gap: "0.25rem",
       }}
     >
-      {title && <FormFieldTitle required={required}>{title}</FormFieldTitle>}
+      {label && <FormFieldTitle required={required}>{label}</FormFieldTitle>}
       {component}
     </Box>
   );
 };
 
-export const FormFieldTitle = ({
+interface FormFieldTitleProps extends LabelHTMLAttributes<HTMLLabelElement> {
+  required?: boolean;
+  ref?: Ref<HTMLLabelElement>;
+}
+
+export const FormFieldTitle: FC<FormFieldTitleProps> = ({
   children,
   required,
   ...rest
-}: LabelHTMLAttributes<HTMLLabelElement> & {
-  required?: boolean;
-  ref?: Ref<HTMLLabelElement>;
 }) => {
   return (
     <label
