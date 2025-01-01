@@ -1,4 +1,5 @@
-import { Box, BoxProps } from "@kit/ui";
+// import { Box, BoxProps } from "@gravity-ui/uikit";
+import { Box, BoxProps } from "@gravity-ui/uikit";
 import { forwardRef } from "react";
 
 export type Difficulty = "easy" | "normal" | "hard";

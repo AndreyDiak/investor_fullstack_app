@@ -1,4 +1,4 @@
-import { Box } from "@kit/ui";
+import { Box } from "@gravity-ui/uikit";
 import {
   forwardRef,
   HTMLAttributes,

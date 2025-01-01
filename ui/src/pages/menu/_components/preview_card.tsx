@@ -1,53 +1,52 @@
-import { Plus } from "@gravity-ui/icons";
-import {
-  BaseButton,
-  Box,
-  BoxProps,
-  DialogContent,
-  DialogTrigger,
-  DialogWrapper,
-} from "@kit/ui";
+// import {
+//   BaseButton,
+//   Box,
+//   BoxProps,
+//   DialogContent,
+//   DialogTrigger,
+//   DialogWrapper,
+// } from "@gravity-ui/uikit";
+import { Box, BoxProps } from "@gravity-ui/uikit";
 import { useNavigate } from "react-router-dom";
 import { Game } from "../../../entities/game/types";
-import { Text } from "./../../../shared/ui/text";
-import { CreateGameDialog } from "./_create_game_dialog";
 
 export const MenuPreviewCard = ({ game }: { game?: Game }) => {
   const navigate = useNavigate();
   if (!game) {
     return (
-      <DialogWrapper placement="top" size="large">
-        <DialogTrigger>
-          <CardWrapper
-            onClick={() => {
-              navigate("/new");
-            }}
-            css={{
-              backgroundColor: "transparent",
-              border: "2px solid white",
-              boxShadow: "0 0 100px rgba(0, 0, 0, 0.2)",
-            }}
-          >
-            <BaseButton
-              css={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Plus width={30} height={30} color="#fff" />
-              <Text
-                css={{ fontSize: "1.5rem", lineHeight: "2rem", color: "#fff" }}
-              >
-                Новая игра
-              </Text>
-            </BaseButton>
-          </CardWrapper>
-        </DialogTrigger>
-        <DialogContent css={{ width: "1200px" }}>
-          <CreateGameDialog />
-        </DialogContent>
-      </DialogWrapper>
+      <Box>create game dialog</Box>
+      // <DialogWrapper placement="top" size="large">
+      //   <DialogTrigger>
+      //     <CardWrapper
+      //       onClick={() => {
+      //         navigate("/new");
+      //       }}
+      //       css={{
+      //         backgroundColor: "transparent",
+      //         border: "2px solid white",
+      //         boxShadow: "0 0 100px rgba(0, 0, 0, 0.2)",
+      //       }}
+      //     >
+      //       <BaseButton
+      //         css={{
+      //           display: "flex",
+      //           flexDirection: "column",
+      //           alignItems: "center",
+      //         }}
+      //       >
+      //         <Plus width={30} height={30} color="#fff" />
+      //         <Text
+      //           css={{ fontSize: "1.5rem", lineHeight: "2rem", color: "#fff" }}
+      //         >
+      //           Новая игра
+      //         </Text>
+      //       </BaseButton>
+      //     </CardWrapper>
+      //   </DialogTrigger>
+      //   <DialogContent css={{ width: "1200px" }}>
+      //     <CreateGameDialog />
+      //   </DialogContent>
+      // </DialogWrapper>
     );
   }
 

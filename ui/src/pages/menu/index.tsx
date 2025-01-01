@@ -1,4 +1,4 @@
-import { Box } from "@kit/ui";
+import { Box } from "@gravity-ui/uikit";
 import { useEffect, useMemo } from "react";
 import { toast } from "react-toastify";
 import { useGameStore } from "../../api/game";

@@ -1,5 +1,5 @@
+import { Box, BoxProps } from "@gravity-ui/uikit";
 import { TemplateCredit } from "@kit/entities";
-import { Box, BoxProps } from "@kit/ui";
 import { MoneyDisplay } from "../../shared/ui/money_display";
 import { Text } from "../../shared/ui/text";
 

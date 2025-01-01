@@ -1,5 +1,5 @@
+import { Box, BoxProps, Divider } from "@gravity-ui/uikit";
 import { GameTemplate } from "@kit/entities";
-import { Box, BoxProps, Divider } from "@kit/ui";
 import { DifficultyDisplay } from "./difficulty_display";
 import { MoneyDisplay } from "./money_display";
 import { Text } from "./text";
@@ -64,7 +64,7 @@ export const TemplateCard = ({ template, ...rest }: TemplateCardProps) => {
         </Text>
         <DifficultyDisplay difficulty={template.difficulty} />
       </Box>
-      <Divider color="var(--text-secondary)" />
+      <Divider style={{ backgroundColor: "var(--text-secondary)" }} />
       <SavingsListDisplay
         items={[
           { label: "Зарплата", value: template.job.startSalary },
@@ -72,7 +72,7 @@ export const TemplateCard = ({ template, ...rest }: TemplateCardProps) => {
           { label: "Имущество", value: propertiesSummary },
         ]}
       />
-      <Divider color="var(--text-secondary)" />
+      <Divider style={{ backgroundColor: "var(--text-secondary)" }} />
       <SavingsListDisplay
         items={[{ label: "Кредиты", value: creditsSummaryPayment }]}
       />

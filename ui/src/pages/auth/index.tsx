@@ -1,4 +1,5 @@
-import { BaseButton, Box } from "@kit/ui";
+import { Box } from "@gravity-ui/uikit";
+import { BaseButton } from "@kit/ui";
 import { motion, useCycle } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

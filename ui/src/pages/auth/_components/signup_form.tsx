@@ -1,6 +1,6 @@
+// import { Form, FormGrid } from "@gravity-ui/uikit";
 import { Envelope, Lock, Person } from "@gravity-ui/icons";
-import { Form, FormGrid } from "@kit/ui";
-import { motion } from "framer-motion";
+import { Form, FormField, FormGrid } from "@kit/ui";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuthStore } from "../../../api/auth";
@@ -59,6 +59,7 @@ export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
     delete mutable.repeatPassword;
     await fetch(mutable);
   };
+
   return (
     <Form
       form={form}
@@ -72,46 +73,25 @@ export const SignUpForm = ({ onSuccess }: { onSuccess?: () => void }) => {
       }}
     >
       <FormGrid css={{ marginBottom: "3rem" }}>
-        <motion.span
-          css={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-          {...styles}
-        >
+        <FormField fieldId="email" required>
+          <AuthInput Icon={Envelope} placeholder="Эл. Почта" />
+        </FormField>
+        <FormField fieldId="username" required>
+          <AuthInput Icon={Person} type="text" placeholder="Имя пользователя" />
+        </FormField>
+        <FormField fieldId="password" required>
+          <AuthInput Icon={Lock} type="password" placeholder="Пароль" />
+        </FormField>
+        <FormField fieldId="repeatPassword" required>
           <AuthInput
-            Icon={Envelope}
-            type="text"
-            placeholder="Эл. Почта"
-            {...register("email", {
-              required: true,
-            })}
+            Icon={Lock}
+            type="password"
+            placeholder="Подтвердить пароль"
           />
-          <AuthInput
-            Icon={Person}
-            type="text"
-            placeholder="Имя пользователя"
-            {...register("username", {
-              required: true,
-            })}
-          />
-        </motion.span>
-        <AuthInput
-          Icon={Lock}
-          type="password"
-          placeholder="Пароль"
-          {...register("password", {
-            required: true,
-          })}
-        />
-        <AuthInput
-          Icon={Lock}
-          type="password"
-          placeholder="Подтвердить пароль"
-          {...register("repeatPassword", {
-            required: true,
-          })}
-        />
+        </FormField>
         <HttpError error={httpError} />
+        <AuthButton>Создать аккаунт</AuthButton>
       </FormGrid>
-      <AuthButton>Создать аккаунт</AuthButton>
     </Form>
   );
 };

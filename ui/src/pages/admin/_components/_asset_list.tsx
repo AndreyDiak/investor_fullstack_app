@@ -1,5 +1,5 @@
+import { Box, Button } from "@gravity-ui/uikit";
 import { Company, GameTemplate } from "@kit/entities";
-import { Box, Button } from "@kit/ui";
 import { ReactNode, useState } from "react";
 import { Asset } from "..";
 import { TemplateCard } from "../../../shared/ui/template_card";

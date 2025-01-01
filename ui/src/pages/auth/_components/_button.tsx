@@ -1,5 +1,6 @@
-import { BaseButton, CustomFormContext } from "@kit/ui";
-import { ButtonHTMLAttributes, HTMLAttributes, useContext } from "react";
+// import { BaseButton, CustomFormContext } from "@gravity-ui/uikit";
+import { BaseButton } from "@kit/ui";
+import { ButtonHTMLAttributes, HTMLAttributes } from "react";
 import { useFormContext } from "react-hook-form";
 import { ScaleLoader } from "react-spinners";
 
@@ -11,10 +12,10 @@ export const AuthButton = ({ children, ...rest }: Props) => {
   const {
     formState: { isValid, isLoading },
   } = useFormContext();
-  const { loading } = useContext(CustomFormContext);
+  // const { loading } = useContext(CustomFormContext);
+  const loading = false;
 
   const disabled = !isValid || isLoading || loading;
-  console.log({ disabled, isLoading, isValid, loading });
   return (
     <BaseButton
       disabled={disabled}

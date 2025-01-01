@@ -1,5 +1,5 @@
+import { Box, BoxProps, cn } from "@gravity-ui/uikit";
 import { TemplateProperty } from "@kit/entities";
-import { Box, BoxProps, cn } from "@kit/ui";
 import { forwardRef } from "react";
 
 interface PropertyDisplayProps extends BoxProps {

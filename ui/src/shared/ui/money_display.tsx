@@ -1,4 +1,4 @@
-import { Box, BoxProps } from "@kit/ui";
+import { Box, BoxProps } from "@gravity-ui/uikit";
 import { MoneyIcon, MoneyIconVariant } from "../icons/money";
 import { beatifyPrice } from "../lib";
 

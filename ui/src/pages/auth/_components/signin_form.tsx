@@ -1,5 +1,5 @@
 import { Lock, Person } from "@gravity-ui/icons";
-import { Form, FormGrid } from "@kit/ui";
+import { Form, FormField, FormGrid } from "@kit/ui";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { SignInDto, useAuthStore } from "../../../api/auth";
@@ -11,7 +11,6 @@ import { AuthInput } from "./_input";
 export const SignInForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const form = useForm<SignInDto>();
   const [httpError, setHttpError] = useState();
-  const { register } = form;
 
   const { fetch: handleSignIn } = useStoreFetch(
     useAuthStore((state) => state.signIn),
@@ -23,26 +22,16 @@ export const SignInForm = ({ onSuccess }: { onSuccess?: () => void }) => {
 
   return (
     <Form form={form} onSubmit={handleSignIn}>
-      <FormGrid css={{ marginBottom: "3rem" }}>
-        <AuthInput
-          Icon={Person}
-          type="text"
-          placeholder="Имя пользователя"
-          {...register("username", {
-            required: true,
-          })}
-        />
-        <AuthInput
-          Icon={Lock}
-          type="password"
-          placeholder="Пароль"
-          {...register("password", {
-            required: true,
-          })}
-        />
+      <FormGrid>
+        <FormField fieldId="username" required>
+          <AuthInput Icon={Person} placeholder="Имя пользователя" />
+        </FormField>
+        <FormField fieldId="password" required>
+          <AuthInput Icon={Lock} type="password" placeholder="Пароль" />
+        </FormField>
         <HttpError error={httpError} />
+        <AuthButton>Войти</AuthButton>
       </FormGrid>
-      <AuthButton>Войти</AuthButton>
     </Form>
   );
 };

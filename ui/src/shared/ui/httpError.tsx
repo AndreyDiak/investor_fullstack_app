@@ -1,12 +1,14 @@
-import { Badge } from "@kit/ui";
+// import { Badge } from "@gravity-ui/uikit";
+
+import { Label } from "@gravity-ui/uikit";
 
 export const HttpError = ({ error }: { error?: Error }) => {
   if (!error) return null;
 
   return (
-    <Badge
-      variant="danger"
-      size="small"
+    <Label
+      theme="danger"
+      size="m"
       css={{
         width: "100%",
         textAlign: "center",
@@ -14,6 +16,6 @@ export const HttpError = ({ error }: { error?: Error }) => {
       }}
     >
       {Array.isArray(error) ? error[0].message : error.message}
-    </Badge>
+    </Label>
   );
 };

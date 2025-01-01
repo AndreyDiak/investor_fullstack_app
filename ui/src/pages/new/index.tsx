@@ -1,9 +1,7 @@
-import { Box, DialogContent, DialogTrigger, DialogWrapper } from "@kit/ui";
-import { useEffect } from "react";
+import { Box } from "@gravity-ui/uikit";
+import { Fragment, useEffect } from "react";
 import { useTemplateStore } from "../../api/template";
 import { useStoreFetch } from "../../shared/hooks";
-import { TemplateCard } from "../../shared/ui/template_card";
-import { TemplatePreviewDialog } from "./_components/preview_dialog";
 
 export const NewGamePage = () => {
   const {
@@ -43,14 +41,15 @@ export const NewGamePage = () => {
       }}
     >
       {templates?.map((template) => (
-        <DialogWrapper placement="top" size="large">
-          <DialogTrigger css={{ display: "flex", flexDirection: "column" }}>
-            <TemplateCard key={template.job.name} template={template} />
-          </DialogTrigger>
-          <DialogContent>
-            <TemplatePreviewDialog template={template} />
-          </DialogContent>
-        </DialogWrapper>
+        <Fragment>game template modal</Fragment>
+        // <DialogWrapper placement="top" size="large">
+        //   <DialogTrigger css={{ display: "flex", flexDirection: "column" }}>
+        //     <TemplateCard key={template.job.name} template={template} />
+        //   </DialogTrigger>
+        //   <DialogContent>
+        //     <TemplatePreviewDialog template={template} />
+        //   </DialogContent>
+        // </DialogWrapper>
       ))}
     </Box>
   );

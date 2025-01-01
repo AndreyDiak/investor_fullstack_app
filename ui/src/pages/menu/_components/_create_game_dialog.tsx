@@ -1,11 +1,5 @@
+import { Box, BoxProps, DialogBody } from "@gravity-ui/uikit";
 import { GameTemplate } from "@kit/entities";
-import {
-  Box,
-  BoxProps,
-  DialogBody,
-  DialogHeader,
-  DialogHeading,
-} from "@kit/ui";
 import {
   Fragment,
   RefObject,
@@ -80,11 +74,11 @@ export const CreateGameDialog = () => {
 
   return (
     <Fragment>
-      <DialogHeader css={{ background: "var(--color-aqua)" }}>
+      {/* <DialogHeader css={{ background: "var(--color-aqua)" }}>
         <DialogHeading>
           <Text css={{ color: "#fff" }}>Создать новую игру</Text>
         </DialogHeading>
-      </DialogHeader>
+      </DialogHeader> */}
       <DialogBody
         css={{
           padding: "2rem",

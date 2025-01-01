@@ -1,5 +1,5 @@
+import { Box, DialogBody } from "@gravity-ui/uikit";
 import { GameTemplate } from "@kit/entities";
-import { Box, DialogBody, DialogHeader, DialogHeading } from "@kit/ui";
 import { Fragment } from "react";
 import { CreditsTable } from "../../../shared/ui/credits_table";
 
@@ -10,9 +10,11 @@ export const TemplatePreviewDialog = ({
 }) => {
   return (
     <Fragment>
-      <DialogHeader css={{ backgroundColor: "rgba(53, 145, 148, 0.1)" }}>
-        <DialogHeading>{template.job.name}</DialogHeading>
-      </DialogHeader>
+      {template.job.name}
+      {/* <DialogHeader  css={{ backgroundColor: "rgba(53, 145, 148, 0.1)" }}>
+        
+        {/* <DialogHeading></DialogHeading> */}
+      {/* </DialogHeader> */}
       <DialogBody>
         <Box
           css={{
