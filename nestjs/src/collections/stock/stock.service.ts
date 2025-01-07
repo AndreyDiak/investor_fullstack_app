@@ -1,10 +1,10 @@
-import { CompanyTag } from '@kit/entities';
-import {
-  generateStockInitialCount,
-  generateStockInitialPrice,
-} from '@kit/struct';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import {
+  CompanyTag,
+  generateStockInitialCount,
+  generateStockInitialPrice,
+} from '@raymix/investor-kit';
 import { Model } from 'mongoose';
 import { Stock } from 'src/schemas/stock.schema';
 import { companies } from '../../../../assets';

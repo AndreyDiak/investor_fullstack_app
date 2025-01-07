@@ -1,11 +1,11 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import {
   JobVariant,
   TemplateCredit,
   TemplateDifficulty,
   // TemplateJob,
   TemplateProperty,
-} from '@kit/entities';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+} from '@raymix/investor-kit';
 import { HydratedDocument } from 'mongoose';
 
 @Schema()

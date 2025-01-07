@@ -1,5 +1,5 @@
-import { CompanyTag } from '@kit/entities';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { CompanyTag } from '@raymix/investor-kit';
 import { HydratedDocument } from 'mongoose';
 
 export type PostDocument = HydratedDocument<Stock>;
