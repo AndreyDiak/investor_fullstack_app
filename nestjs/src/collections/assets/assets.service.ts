@@ -19,8 +19,7 @@ export class AssetsService<
   }
 
   update(data: D, id: number, filename: string) {
-    let parsed = this.read(filename);
-    parsed = parsed.map((v) => {
+    const parsed = this.read(filename).map((v) => {
       if (v.id === id) {
         return {
           ...data,
@@ -33,8 +32,7 @@ export class AssetsService<
   }
 
   delete(id: number, filename: string) {
-    let parsed = this.read<any>(filename);
-    parsed.filter((v) => v.id !== id);
+    const parsed = this.read<any>(filename).filter((v) => v.id !== id);
     this.save(parsed, filename);
   }
 

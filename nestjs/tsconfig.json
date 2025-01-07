@@ -17,10 +17,6 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "resolveJsonModule": true,
-    "paths": {
-      "@kit/struct": ["../kit/struct"],
-      "@kit/entities": ["../kit/entities"]
-    }
-  },
+    "resolveJsonModule": true
+  }
 }
