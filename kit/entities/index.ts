@@ -1,3 +1,3 @@
-export * from "./company/index";
+export * from "./company";
 export * from "./game_template";
-export * from "./tag/index";
+export * from "./tag";

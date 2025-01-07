@@ -1,1 +1,1 @@
-export interface Stock {}
+export interface IStock {}
