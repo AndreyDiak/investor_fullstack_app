@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Company } from '@raymix/investor-kit';
 import { JwtPayload } from 'src/common/types/jwt';
 import { StockService } from './stock.service';
 
@@ -7,8 +8,12 @@ export class StockController {
   constructor(private readonly stockService: StockService) {}
 
   @Post('/init')
-  init(@Req() req: Request & { user: JwtPayload }) {
-    return this.stockService.init();
+  init(
+    @Body() body: { companies: Company[] },
+    @Req() req: Request & { user: JwtPayload },
+  ) {
+    const { companies } = body;
+    return this.stockService.init(companies);
   }
 
   @Get('/')
