@@ -1,10 +1,14 @@
 import { Lock, Person } from "@gravity-ui/icons";
-import { Form, FormField, FormGrid } from "@kit/ui";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { SignInDto, useAuthStore } from "../../../api/auth";
 import { useStoreFetch } from "../../../shared/hooks/use_store_fetch";
-import { HttpError } from "../../../shared/ui/httpError";
+import {
+  Form,
+  FormField,
+  FormGrid,
+  HttpError,
+} from "../../../shared/ui/components";
 import { AuthButton } from "./_button";
 import { AuthInput } from "./_input";
 
