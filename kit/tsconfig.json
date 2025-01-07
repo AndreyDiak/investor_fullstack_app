@@ -14,6 +14,5 @@
     "skipLibCheck": true,
     "jsxImportSource": "@emotion/react"
   },
-  "include": ["ui/**/*"],
   "exclude": ["node_modules", "dist"]
 }
