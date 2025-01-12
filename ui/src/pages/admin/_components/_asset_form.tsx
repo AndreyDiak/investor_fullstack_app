@@ -1,10 +1,10 @@
-import { FormRow } from "@gravity-ui/components";
-import { Company, GameTemplate } from "@kit/entities";
+// import { Company, GameTemplate } from "@kit/entities";
 // import { Form, FormField, FormGrid, FormSubmitButton } from "@gravity-ui/uikit";
 import { Box, TextInput } from "@gravity-ui/uikit";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { AssetType, useAssetsStore } from "../../../api/assets";
+import { FormField } from "../../../shared/ui/components";
 
 export const CompanyForm = () => {
   const form = useForm<Company>();
@@ -17,9 +17,9 @@ export const CompanyForm = () => {
 
   return (
     <form>
-      <FormRow direction="column" fieldId="name">
+      <FormField fieldId="name" required>
         <TextInput />
-      </FormRow>
+      </FormField>
     </form>
     // <Form></Form>
     // <Form form={form} onSubmit={handleSubmit}>
