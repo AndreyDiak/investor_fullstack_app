@@ -8,5 +8,3 @@ export interface IGameTemplate {
 }
 
 export type ITemplateDifficulty = "easy" | "normal" | "hard";
-
-// export type PropertyVariant = "jewelery" | "car" | "flat";
