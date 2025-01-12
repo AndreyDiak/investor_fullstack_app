@@ -1,11 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import {
   ITemplateDifficulty,
-  TemplateCredit,
-  // TemplateJob,
-  TemplateProperty,
+  ITemplateJobPosition,
 } from '@raymix/investor-kit';
-import { ITemplateJobPosition } from '@raymix/investor-kit/entities/game_template/types/job';
 import { HydratedDocument } from 'mongoose';
 
 @Schema()
