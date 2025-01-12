@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import {
-  JobVariant,
+  ITemplateDifficulty,
   TemplateCredit,
-  TemplateDifficulty,
   // TemplateJob,
   TemplateProperty,
 } from '@raymix/investor-kit';
+import { ITemplateJobPosition } from '@raymix/investor-kit/entities/game_template/types/job';
 import { HydratedDocument } from 'mongoose';
 
 @Schema()
@@ -17,7 +17,7 @@ class Job {
   startSalary: number;
 
   @Prop()
-  type: JobVariant;
+  type: ITemplateJobPosition;
 
   @Prop()
   savings: number;
@@ -36,7 +36,7 @@ export class Template {
   job: Job;
 
   @Prop()
-  difficulty: TemplateDifficulty;
+  difficulty: ITemplateDifficulty;
 
   @Prop()
   credits: TemplateCredit[];

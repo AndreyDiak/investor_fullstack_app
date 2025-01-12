@@ -13,12 +13,13 @@ export class AssetsController {
   }
 
   @Post('/:type/delete/:id')
-  deleteAssets(@Param() id: string, @Param() type: string, @Body() body: any) {
-    return this.assetsService.delete(Number(id), body.type);
+  deleteAssets(@Param() params: any) {
+    const { id, type } = params;
+    return this.assetsService.delete(Number(id), type);
   }
 
   @Post(`/:type/update/:id`)
-  updateAssets(@Param() params, @Body() body: any) {
+  updateAssets(@Param() params: any, @Body() body: any) {
     const { id, type } = params;
     return this.assetsService.update(body.data, Number(id), type);
   }
