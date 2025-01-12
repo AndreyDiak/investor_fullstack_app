@@ -1,5 +1,4 @@
 // import { BaseButton, CustomFormContext } from "@gravity-ui/uikit";
-import { BaseButton } from "@kit/ui";
 import { ButtonHTMLAttributes, HTMLAttributes } from "react";
 import { useFormContext } from "react-hook-form";
 import { ScaleLoader } from "react-spinners";

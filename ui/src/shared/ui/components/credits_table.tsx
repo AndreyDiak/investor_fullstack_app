@@ -1,8 +1,9 @@
 import { Box, BoxProps } from "@gravity-ui/uikit";
-import { TemplateCredit } from "@kit/entities";
+import { ITemplateCredit } from "@raymix/investor-kit";
+// import { TemplateCredit } from "@kit/entities";
 
 interface Props extends BoxProps {
-  credits: TemplateCredit[];
+  credits: ITemplateCredit[];
 }
 export const CreditsTable = ({ credits, ...rest }: Props) => {
   return (

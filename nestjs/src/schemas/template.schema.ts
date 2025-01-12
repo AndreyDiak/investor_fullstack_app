@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import {
+  ITemplateCredit,
   ITemplateDifficulty,
   ITemplateJobPosition,
 } from '@raymix/investor-kit';
@@ -36,10 +37,7 @@ export class Template {
   difficulty: ITemplateDifficulty;
 
   @Prop()
-  credits: TemplateCredit[];
-
-  @Prop()
-  properties: TemplateProperty[];
+  credits: ITemplateCredit[];
 }
 
 export const TemplateSchema = SchemaFactory.createForClass(Template);

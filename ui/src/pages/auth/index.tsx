@@ -1,10 +1,8 @@
 import { Box } from "@gravity-ui/uikit";
-import { BaseButton } from "@kit/ui";
 import { motion, useCycle } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Heading } from "../../../../kit/ui/components/heading";
 import { SignInForm } from "./_components/signin_form";
 import { SignUpForm } from "./_components/signup_form";
 
