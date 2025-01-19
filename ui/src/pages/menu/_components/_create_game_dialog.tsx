@@ -1,5 +1,6 @@
 import { Box, BoxProps, DialogBody } from "@gravity-ui/uikit";
-import { GameTemplate } from "@kit/entities";
+// import { GameTemplate } from "@kit/entities";
+import { IGameTemplate } from "@raymix/investor-kit";
 import {
   Fragment,
   RefObject,
@@ -11,13 +12,13 @@ import {
 import { useGameStore } from "../../../api/game";
 import { useTemplateStore } from "../../../api/template";
 import { CreditsDisplay } from "../../../entities/credit/display";
-import { useStoreFetch } from "../../../shared/hooks/use_store_fetch";
+import { useStoreFetch } from "../../../shared/hooks";
 import {
   DifficultyDisplay,
   difficultyToColorMap,
-} from "../../../shared/ui/difficulty_display";
-import { MoneyDisplay } from "../../../shared/ui/money_display";
-import { Text } from "../../../shared/ui/text";
+  MoneyDisplay,
+  Text,
+} from "../../../shared/ui/components";
 
 export const CreateGameDialog = () => {
   const {
@@ -26,18 +27,20 @@ export const CreateGameDialog = () => {
     error,
     fetch,
   } = useStoreFetch(useTemplateStore((state) => state.fetch));
+
   const [visibleTemplates, setVisibleTemplates] = useState(templates);
   const [mode, setMode] = useState<"person" | "template">("template");
-  const [selectedTemplate, setSelectedTemplate] = useState<GameTemplate>();
+  const [selectedTemplate, setSelectedTemplate] = useState<IGameTemplate>();
   const [delta, setDelta] = useState<number>(0);
   const [additionalInfoVisible, setAdditionalInfoVisible] = useState(false);
+
   const create = useGameStore((state) => state.create);
   const handleCreate = useCallback(() => {}, []);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handlePersonSelect = useCallback(
-    (template: GameTemplate, templateRef: RefObject<HTMLDivElement>) => {
+    (template: IGameTemplate, templateRef: RefObject<HTMLDivElement>) => {
       if (mode === "person") {
         setMode("template");
         setAdditionalInfoVisible(false);
@@ -146,7 +149,7 @@ const Template = ({
   onClick: handleClick,
   ...rest
 }: {
-  template: GameTemplate;
+  template: IGameTemplate;
   onClick: (ref: RefObject<HTMLDivElement>) => void;
 } & Omit<BoxProps, "onClick">) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -168,7 +171,7 @@ const Template = ({
         }}
       >
         <img
-          src={`/jobs/${template.job.type}.jpeg`}
+          src={`/jobs/${template.job.position}.jpeg`}
           css={{
             maxWidth: "300px",
             maxHeight: "400px",
@@ -232,7 +235,7 @@ const Template = ({
           <Text css={{ color: "var(--text-secondary)" }}>Зарплата</Text>
           <MoneyDisplay
             className="text-white font-semibold"
-            count={template.job.startSalary}
+            count={template.job.salary}
             variant={2}
           />
         </Box>
