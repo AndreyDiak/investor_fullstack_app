@@ -1,8 +1,8 @@
 import { Box, Button } from "@gravity-ui/uikit";
-import { Company, GameTemplate } from "@kit/entities";
+import { Company, IGameTemplate } from "@raymix/investor-kit";
 import { ReactNode, useState } from "react";
 import { Asset } from "..";
-import { TemplateCard } from "../../../shared/ui/template_card";
+import { TemplateCard } from "../../../shared/ui/components";
 import { CompanyForm, TemplateForm } from "./_asset_form";
 
 interface Props {
@@ -12,7 +12,9 @@ interface Props {
 
 const assetToDisplay: Record<string, (items: unknown[]) => ReactNode> = {
   companies: (items) => <CompanyListDisplay items={items as Company[]} />,
-  templates: (items) => <TemplateListDisplay items={items as GameTemplate[]} />,
+  templates: (items) => (
+    <TemplateListDisplay items={items as IGameTemplate[]} />
+  ),
 };
 
 const assetToForm: Record<string, ReactNode> = {
@@ -55,7 +57,7 @@ export const AssetDisplay = ({ items, type }: Props) => {
   );
 };
 
-const TemplateListDisplay = ({ items }: { items: GameTemplate[] }) => {
+const TemplateListDisplay = ({ items }: { items: IGameTemplate[] }) => {
   return items.map((item, index) => (
     <TemplateCard
       key={index}

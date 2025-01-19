@@ -1,6 +1,6 @@
 import { Box, BoxProps } from "@gravity-ui/uikit";
-import { MoneyIcon, MoneyIconVariant } from "../icons/money";
-import { beatifyPrice } from "../lib";
+import { MoneyIcon, MoneyIconVariant } from "../../icons/money";
+import { beatifyPrice } from "../../lib";
 
 interface MoneyDisplayProps extends BoxProps {
   count: number;

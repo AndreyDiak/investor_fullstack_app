@@ -3,6 +3,8 @@ import { motion, useCycle } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BaseButton } from "../../shared/ui/components/base_button";
+import { Heading } from "../../shared/ui/components/heading";
 import { SignInForm } from "./_components/signin_form";
 import { SignUpForm } from "./_components/signup_form";
 

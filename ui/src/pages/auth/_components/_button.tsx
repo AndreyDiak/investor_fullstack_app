@@ -2,6 +2,7 @@
 import { ButtonHTMLAttributes, HTMLAttributes } from "react";
 import { useFormContext } from "react-hook-form";
 import { ScaleLoader } from "react-spinners";
+import { BaseButton } from "../../../shared/ui/components/base_button";
 
 interface Props
   extends HTMLAttributes<HTMLButtonElement>,

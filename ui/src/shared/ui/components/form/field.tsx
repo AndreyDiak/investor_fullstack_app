@@ -1,3 +1,4 @@
+import { Box } from "@gravity-ui/uikit";
 import {
   cloneElement,
   CSSProperties,
@@ -10,7 +11,6 @@ import {
   useRef,
 } from "react";
 import { useFormContext } from "react-hook-form";
-import { Box } from "../box";
 
 interface FormFieldProps {
   fieldId: string;
